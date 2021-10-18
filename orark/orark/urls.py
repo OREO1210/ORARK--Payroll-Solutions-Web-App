@@ -20,6 +20,7 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hod/', include('hodapp.urls')),
-    path('emp/', include('empapp.urls')),
+    path('hod/', include('hodapp.urls',namespace='hodapp')),
+    path('emp/', include('empapp.urls',namespace='empapp')),
+    path('', include('accounts.urls'))
 ]
