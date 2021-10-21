@@ -20,7 +20,12 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('accounts/',include('accounts.urls')),
+   
+ 
     path('hod/', include('hodapp.urls',namespace='hodapp')),
     path('emp/', include('empapp.urls',namespace='empapp')),
     path('', include('accounts.urls'))
+    
+  
 ]
