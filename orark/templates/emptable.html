@@ -160,16 +160,12 @@
                       <thead>
                         <tr>
                           <th>User</th>
-                          <th>email</th>
-                          <th>emp_id</th>
-                          <th>DOB</th>
-                          <th>contact</th>
-                          <th>address</th>
-                          <th>Hire_date</th>
-                          <th>metrocity</th>
-                          <th>No_of_Children</th>
-                          <th>Desg</th>
-                          <th>Dept</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Email</th>
+                          <th>Contact</th>
+                          <th>Hire Date</th>
+                          <th>Desgination</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -178,16 +174,9 @@
                           <td class="py-1">
                             <img src="../../images/faces/face1.jpg" alt="image" />
                           </td>
-                          <td>{{st.user_id}}</td>
-                          <td>{{st.emp_id}}</td>
-                          <td>{{st.dob}}</td>
-                          <td>{{st.contact}}</td>
-                          <td>{{st.addresses}}</td>
-                          <td>{{st.hire_date}}</td>
-                          <td>{{st.metrocity}}</td>
-                          <td>{{st.no_of_children}}</td>
-                          <td>{{st.desg}}</td>
-                          <td>{{st.dep}}</td>
+                          {% for u in st %}
+                          <td>{{u}}</td>
+                          {% endfor %}
                         </tr>
                         {% endfor %}
                       </tbody>

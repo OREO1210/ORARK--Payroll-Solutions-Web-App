@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
 from accounts.models import User,Employees,Dept
-
+from itertools import chain
 
 def view_login(request):
     if request.method=='POST':
@@ -32,8 +32,15 @@ def home(request):
 def userinfo(request):
     k = Dept.objects.get( user_id= request.user.id )
     stud = Employees.objects.all().filter(dep=k)
-    print("output",stud)
-    return render(request,'emptable.html',{'stu': stud})
+    eee=User.objects.all()
+    final=[]
+    for x in stud:
+        for y in eee:
+            if x.user_id==y.id:
+                l=[y.first_name, y.last_name,y.email,x.contact,x.hire_date,x.desg]
+                final.append(l)
+    print("output", final)
+    return render(request,'emptable.html',{'stu': final})
 
 
 
