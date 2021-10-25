@@ -27,12 +27,12 @@ class UserrAdmin(UserAdmin):
     ordering = ("email",)
 
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'first_name', 'last_name')}),
+        (None, {'fields': ('email', 'password', 'first_name', 'last_name','gender')}),
         )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password', 'first_name', 'last_name', 'is_employee', 'is_hod', 'is_active')}
+            'fields': ('email', 'password', 'first_name', 'last_name', 'is_employee', 'is_hod', 'is_active','gender')}
             ),
         )
 

@@ -2,7 +2,8 @@ from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
-from accounts.models import User,Employees
+from accounts.models import User,Employees,Dept
+
 
 def view_login(request):
     if request.method=='POST':
@@ -26,3 +27,13 @@ def home(request):
     else:
         messages.error(request,"Login to visit your dashboard")
     return render(request,"login.html",{'type':"HOD",'typ':'hod'})
+
+
+def userinfo(request):
+    k = Dept.objects.get( user_id= request.user.id )
+    stud = Employees.objects.all().filter(dep=k)
+    print("output",stud)
+    return render(request,'emptable.html',{'stu': stud})
+
+
+

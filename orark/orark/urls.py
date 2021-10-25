@@ -21,8 +21,6 @@ from accounts.views import view_logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
- 
     path('hod/', include('hodapp.urls',namespace='hodapp')),
     path('emp/', include('empapp.urls',namespace='empapp')),
     path('logout/', view_logout),

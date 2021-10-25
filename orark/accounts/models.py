@@ -1,11 +1,20 @@
 from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.db import models
+from django import forms
 # Create your models here.
 
 import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+GENDER_MALE = 0
+GENDER_FEMALE = 1
+GENDER_NONBINARY=2
+GENDER_CHOICES = [(GENDER_MALE, 'Male'), (GENDER_FEMALE, 'Female'),(GENDER_NONBINARY, 'Non-Binary')]
 
+
+yes=1
+no=0
+metrocity_choices=[(yes,'yes'),(no,'no')]
 
 def current_year():
     return datetime.date.today().year
@@ -49,6 +58,7 @@ class User(AbstractUser):
     is_employee=models.BooleanField(default=False)
     username = None
     email = models.EmailField(('email address'), unique=True)
+    gender = models.IntegerField(choices=GENDER_CHOICES,default=2)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     
@@ -111,8 +121,7 @@ class Dept(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     dep_id = models.BigIntegerField(db_column='Dep_id', null=False)  # Field name made lowercase.
     deptname = models.CharField(db_column='DeptName', max_length=100)  # Field name made lowercase.
-    gender = models.CharField(db_column='Gender', max_length=100)  # Field name made lowercase.
-
+   
     class Meta:
          
         db_table = 'dept'
@@ -140,13 +149,12 @@ class Employees(models.Model):
     emp_id = models.BigIntegerField(db_column='Emp_id', null=False)  # Field name made lowercase.
     dep = models.ForeignKey(Dept, models.DO_NOTHING, db_column='Dep_id')  # Field name made lowercase.
     desg = models.ForeignKey(Designation, models.DO_NOTHING, db_column='Desg_id')  # Field name made lowercase.
-    gender = models.CharField(db_column='Gender', max_length=100)  # Field name made lowercase.
     dob = models.DateField(db_column='DOB')  # Field name made lowercase.
     contact = models.CharField(max_length=18,db_column='Contact')  # Field name made lowercase.
     addresses = models.CharField(db_column='Addresses', max_length=700)  # Field name made lowercase.
     images = models.CharField(db_column='Images', max_length=100, blank=True, null=True)  # Field name made lowercase.
     hire_date = models.DateField(db_column='Hire_date')  # Field name made lowercase.
-    metrocity = models.IntegerField(db_column='Metrocity')  # Field name made lowercase.
+    metrocity = models.IntegerField(choices=metrocity_choices,default=2)
     no_of_children = models.IntegerField(db_column='No_of_Children')  # Field name made lowercase.
 
     class Meta:
@@ -154,9 +162,8 @@ class Employees(models.Model):
         db_table = 'employees'
     
     def __str__(self):
-        return self.user
+        return self.user.email
     
-
 
 class LeaveRequests(models.Model):
     req_id = models.BigIntegerField(db_column='Req_id', primary_key=True)  # Field name made lowercase.
