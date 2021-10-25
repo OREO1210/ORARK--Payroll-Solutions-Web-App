@@ -35,10 +35,11 @@ def userinfo(request):
     eee=User.objects.all()
     final=[]
     for x in stud:
-        for y in eee:
-            if x.user_id==y.id:
-                l=[y.first_name, y.last_name,y.email,x.contact,x.hire_date,x.desg]
-                final.append(l)
+        l=[]
+        o=User.objects.get(id=x.user_id)
+        l=[o.first_name, o.last_name,o.email,x.contact,x.hire_date,x.desg]
+        final.append(l)
+        
     print("output", final)
     return render(request,'emptable.html',{'stu': final})
 
