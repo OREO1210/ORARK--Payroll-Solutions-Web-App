@@ -154,7 +154,7 @@ class Employees(models.Model):
     addresses = models.CharField(db_column='Addresses', max_length=700)  # Field name made lowercase.
     images = models.CharField(db_column='Images', max_length=100, blank=True, null=True)  # Field name made lowercase.
     hire_date = models.DateField(db_column='Hire_date')  # Field name made lowercase.
-    metrocity = models.IntegerField(choices=metrocity_choices,default=2)
+    metrocity = models.IntegerField(choices=metrocity_choices,default=1)
     no_of_children = models.IntegerField(db_column='No_of_Children')  # Field name made lowercase.
 
     class Meta:
