@@ -32,14 +32,13 @@ def home(request):
 def userinfo(request):
     k = Dept.objects.get( user_id= request.user.id )
     stud = Employees.objects.all().filter(dep=k)
-    eee=User.objects.all()
     final=[]
     for x in stud:
         l=[]
         o=User.objects.get(id=x.user_id)
         l=[o.first_name, o.last_name,o.email,x.contact,x.hire_date,x.desg]
         final.append(l)
-        
+
     print("output", final)
     return render(request,'emptable.html',{'stu': final})
 
