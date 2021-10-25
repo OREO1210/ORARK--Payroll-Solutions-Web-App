@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.db import models
 # Create your models here.
 
@@ -17,6 +17,33 @@ def max_value_current_year(value):
 def year_choices():
     return [(r,r) for r in range(1984, datetime.date.today().year+1)]
 
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password, **extra_fields):
+        """
+        Create and save a User with the given email and password.
+        """
+        if not email:
+            raise ValueError(_('The Email must be set'))
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, email, password, **extra_fields):
+        """
+        Create and save a SuperUser with the given email and password.
+        """
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError(_('Superuser must have is_staff=True.'))
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError(_('Superuser must have is_superuser=True.'))
+        return self.create_user(email, password, **extra_fields)
+
 class User(AbstractUser):
     is_hod=models.BooleanField(default=False)
     is_employee=models.BooleanField(default=False)
@@ -24,6 +51,11 @@ class User(AbstractUser):
     email = models.EmailField(('email address'), unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    
+    objects = CustomUserManager()
+
+    def __str__(self):
+        return self.email
    
     
 class BaseSalary(models.Model):
@@ -37,7 +69,7 @@ class BaseSalary(models.Model):
         db_table = 'base_salary'
 
     def __str__(self):
-        return self.salary_id
+        return self.dep.deptname
     
 
 
@@ -72,7 +104,7 @@ class Deductions(models.Model):
         db_table = 'deductions'
     
     def __str__(self):
-        return self.emp
+        return self.emp.user.first_name + ' ' + self.emp.user.last_name
     
 
 class Dept(models.Model):
@@ -99,7 +131,7 @@ class Designation(models.Model):
         db_table = 'designation'
     
     def __str__(self):
-        return self.desgname
+        return self.dep.deptname+' | ' + self.desgname
     
 
 

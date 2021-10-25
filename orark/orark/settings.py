@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'empapp',
     'hodapp',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
