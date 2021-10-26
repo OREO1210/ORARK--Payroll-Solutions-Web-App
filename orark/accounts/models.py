@@ -12,9 +12,6 @@ GENDER_NONBINARY=2
 GENDER_CHOICES = [(GENDER_MALE, 'Male'), (GENDER_FEMALE, 'Female'),(GENDER_NONBINARY, 'Non-Binary')]
 
 
-yes=1
-no=0
-metrocity_choices=[(yes,'yes'),(no,'no')]
 
 def current_year():
     return datetime.date.today().year
@@ -59,11 +56,10 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(('email address'), unique=True)
     gender = models.IntegerField(choices=GENDER_CHOICES,default=2)
+    images = models.ImageField(db_column='Images', upload_to='pics',default='/pics/orark-small.jpg', blank=True)  # Field name made lowercase.
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-    
     objects = CustomUserManager()
-
     def __str__(self):
         return self.email
    
@@ -152,9 +148,8 @@ class Employees(models.Model):
     dob = models.DateField(db_column='DOB')  # Field name made lowercase.
     contact = models.CharField(max_length=18,db_column='Contact')  # Field name made lowercase.
     addresses = models.CharField(db_column='Addresses', max_length=700)  # Field name made lowercase.
-    images = models.CharField(db_column='Images', max_length=100, blank=True, null=True)  # Field name made lowercase.
     hire_date = models.DateField(db_column='Hire_date')  # Field name made lowercase.
-    metrocity = models.IntegerField(choices=metrocity_choices,default=1)
+    metrocity = models.BooleanField(default=False)
     no_of_children = models.IntegerField(db_column='No_of_Children')  # Field name made lowercase.
 
     class Meta:

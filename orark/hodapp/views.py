@@ -36,8 +36,7 @@ def userinfo(request):
         final=[]
         for x in stud:
             l=[]
-            o=User.objects.get(id=x.user_id)
-            l=[o.first_name, o.last_name,o.email,x.contact,x.hire_date,x.desg]
+            l=[x.user.images,x.user.first_name+" "+x.user.last_name, x.user.email,x.contact,x.hire_date,x.desg.desgname]
             final.append(l)
             
         print("output", final)
