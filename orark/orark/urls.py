@@ -25,8 +25,8 @@ urlpatterns = [
     path('hod/', include('hodapp.urls',namespace='hodapp')),
     path('emp/', include('empapp.urls',namespace='empapp')),
     path('logout/', view_logout),
-    path('', include('accounts.urls'))
-    
+    path('', include('accounts.urls')),
+    path('leave/', include('leavemangement.urls',namespace='leavemangement')),
   
 ]
 
