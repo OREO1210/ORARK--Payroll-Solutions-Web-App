@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 {%load static%}
+{% load widget_tweaks %}
 
 
 
-<div class="container-scroller">
+
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="../../index.html"><img src="{%static 'images/logo.png'%}" class="mr-2" alt="logo"/></a>
@@ -142,135 +145,3 @@
         </ul>
       </nav>
       <!-- partial -->
-
-
-
-
-
-
-
-      <div class="main-panel">        
-        <div class="content-wrapper">
-    
-
-
-
-            
-
-
-
-
-
-
-
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Leave Request</p>
-                
-                  <form class="form-sample" method="post" action="/emp/leave/">
-                  {% csrf_token %}
-                    <p class="card-description">
-                      Personal info
-                    </p>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Employee Name</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="{{request.user.first_name}} {{request.user.last_name}}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{request.user.email}}" disabled>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p class="card-description">
-                      Reason for leave
-                    </p>
-
-                    <div class="row">
-                      
-                        <div class="form-group col-md-12">
-                            <label>Leave type</label>
-                            
-                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="ltype">
-                                <option>Vacation</option>
-                                <option>Civil Leave/Jury Duty</option>
-                                <option>Military</option>
-                                <option>Sick - Self</option>
-                                <option>Sick - Family</option>
-                                <option>Sick - Dr. Appointment</option>
-                                <option>Worker's Comp</option>
-                                <option>Family and Medical</option>
-                                <option>Leave of Absence</option>
-                                <option>Funeral</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label>Details</label>
-                            <textarea class="form-control" name="applications" id="exampleTextarea1" rows="4" placeholder="Required if leave type is Family and Medical, Funeral or Other"></textarea>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                      Duration
-                    </p>
-                    <div class="row">
-                      <div class="form-group col-md-6">
-                        <label for="exampleInputUsername1">From</label>
-                        <input type="date" class="form-control" name="sdate">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="exampleInputUsername1">To</label>
-                        <input type="date" class="form-control" name="edate">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputUsername1">Date of Application</label>
-                        <input type="date" class="form-control" value="{{date}}" disabled>
-                    </div>
-
-                    <input type="submit" value="Submit" class="btn btn-primary mr-2">
-                    <button class="btn btn-light">Reset</button>
-
-                  </form>
-                </div>
-              </div>
-            </div>
-        </div>
-
-
-
-            
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-
-  <script src="{%static 'js/bulma-calendar.js'%}"></script>
-  <script src="{%static 'js/bulma-calendar.min.js'%}"></script>
-  <script src="{%static 'vendors/js/vendor.bundle.base.js'%}"></script>
-  <script src="{%static 'vendors/typeahead.js/typeahead.bundle.min.js'%}"></script>
-  <script src="{%static 'vendors/select2/select2.min.js'%}"></script>
-  <script src="{%static 'js/off-canvas.js'%}"></script>
-  <script src="{%static 'js/hoverable-collapse.js'%}"></script>
-  <script src="{%static 'js/template.js'%}"></script>
-  <script src="{%static 'js/settings.js'%}"></script>
-  <script src="{%static 'js/todolist.js'%}"></script>
-  <script src="{%static 'js/file-upload.js'%}"></script>
-  <script src="{%static 'js/typeahead.js'%}"></script>
-  <script src="{%static 'js/select2.js'%}"></script>
-
-
-{% endblock %}

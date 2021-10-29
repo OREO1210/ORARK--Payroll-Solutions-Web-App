@@ -169,7 +169,7 @@ class LeaveRequests(models.Model):
     leave_type = models.CharField(db_column='Leave_Type', max_length=700)  # Field name made lowercase.
     applications = models.CharField(db_column='Applications', max_length=700, blank=True, null=True)  # Field name made lowercase.
     statuses = models.IntegerField(db_column='Statuses')  # Field name made lowercase.
-    lop = models.IntegerField(db_column='LOP')  # Field name made lowercase.
+    lop = models.BooleanField(db_column='LOP')  # Field name made lowercase.
     date_of_application = models.DateField(db_column='Date_of_application', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:

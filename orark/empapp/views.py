@@ -2,7 +2,7 @@ from django.contrib.auth import login, logout,authenticate
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
-from accounts.models import User,Employees,LeaveRequests,Dept
+from accounts.models import *
 from datetime import datetime
 
 def view_login(request):
@@ -25,7 +25,7 @@ def home(request):
     if request.user.is_authenticated and request.user.is_employee:
         return render(request,"ehome.html")
     else:
-        messages.error(request,"Login to visit your dashboard")
+        messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'})
 
 def leave(request):
@@ -47,7 +47,14 @@ def leave(request):
     elif request.user.is_authenticated and request.user.is_employee:
         return render(request,"eleave.html",{'date':datetime.today().strftime('%Y-%m-%d')})
     else:
-        messages.error(request,"Login to visit your dashboard")
+        messages.error(request,"Please Login to continue")
+    return render(request,"login.html",{'type':"Employee",'typ':'emp'})
+
+def viewleave(request):    
+    if request.user.is_authenticated and request.user.is_employee:
+        return render(request,"eleave.html",{'stu':final})
+    else:
+        messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'})
         
     

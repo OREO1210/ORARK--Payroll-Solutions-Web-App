@@ -3,4 +3,6 @@
 {%load static%}
 Hello {{request.user.first_name}} {{request.user.last_name}},
 <a href="/logout" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Logout</a>
+<a href="/emp/leave" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Leave</a>
+<a href="/emp/viewleave" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">View Leave</a>
 {% endblock %}
