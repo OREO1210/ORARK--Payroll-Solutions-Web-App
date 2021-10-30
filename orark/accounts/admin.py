@@ -32,7 +32,7 @@ class UserrAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password', 'first_name', 'last_name', 'is_employee', 'is_hod', 'is_active','gender','images')}
+            'fields': ('email', 'password', 'first_name', 'last_name', 'is_employee', 'is_hod','is_receptionist', 'is_active','gender','images')}
             ),
         )
 

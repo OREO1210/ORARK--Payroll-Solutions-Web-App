@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'empapp',
     'hodapp',
     'widget_tweaks',
-    'leavemangement'
+    'leavemangement',
+    'attendence'
 ]
 
 MIDDLEWARE = [

@@ -27,7 +27,7 @@ urlpatterns = [
     path('logout/', view_logout),
     path('', include('accounts.urls')),
     path('leave/', include('leavemangement.urls',namespace='leavemangement')),
-  
+    path('recep/', include('attendence.urls',namespace='attendence')),
 ]
 
 urlpatterns= urlpatterns + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

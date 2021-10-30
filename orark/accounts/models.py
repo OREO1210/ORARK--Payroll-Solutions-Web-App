@@ -53,6 +53,7 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     is_hod=models.BooleanField(default=False)
     is_employee=models.BooleanField(default=False)
+    is_receptionist=models.BooleanField(default=False)
     username = None
     email = models.EmailField(('email address'), unique=True)
     gender = models.IntegerField(choices=GENDER_CHOICES,default=2)
@@ -62,8 +63,7 @@ class User(AbstractUser):
     objects = CustomUserManager()
     def __str__(self):
         return self.email
-   
-    
+
 class BaseSalary(models.Model):
     salary_id = models.BigIntegerField(db_column='Salary_id', primary_key=True)  # Field name made lowercase.
     dep = models.ForeignKey('Dept', models.DO_NOTHING, db_column='Dep_id')  # Field name made lowercase.
@@ -105,13 +105,11 @@ class Deductions(models.Model):
     lwf = models.FloatField(db_column='LWF', blank=True, null=True)  # Field name made lowercase.
     nps = models.FloatField(db_column='NPS', blank=True, null=True)  # Field name made lowercase.
     lop = models.FloatField(db_column='LOP', blank=True, null=True)  # Field name made lowercase.
-
     class Meta:
         db_table = 'deductions'
     
     def __str__(self):
         return self.emp.user.first_name + ' ' + self.emp.user.last_name
-    
 
 class Dept(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
