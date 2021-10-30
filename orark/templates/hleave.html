@@ -229,18 +229,12 @@
                           <div class="form-check form-check-success">
                             <label class="form-check-label">
                               <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appn">
-                              Approve without LOP
-                            </label>
-                          </div>
-                          <div class="form-check form-check-warning">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="appl">
-                              Approve with LOP
+                              Approve
                             </label>
                           </div>
                           <div class="form-check form-check-danger">
                             <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="rjct" >
+                              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="rjct" >
                               Reject
                             </label>
                           </div>
@@ -263,11 +257,7 @@
             </div>
             {% for st in app %}
               <div id="accordion" class="accordion" role="tablist" aria-multiselectable="true">
-                {%if st.10 == False %}             
                 <div class="card" style="background-color: #DDF0DD">
-                {%else%}
-                <div class="card" style="background-color: #FFF3CC">
-                {%endif%}
                   <div class="card-header" role="tab" id="headingOne">
                     <h5 class="mb-0">
                       <a data-bs-toggle="collapse" data-parent="#accordion" href="#col{{st.0}}" aria-expanded="false" aria-controls="col{{st.0}}">
@@ -297,7 +287,7 @@
                             <span class="col-md-4" style="padding-right:0px">To:</span><span class="col-md-7" style="padding-left:0px">{{st.8}}</span>
                           </p><br>
                           <p class="font-weight-bold">
-                            Total days: {{st.11}}
+                            Total days: {{st.10}}
                           </p>
                         </address>
                       </div>
@@ -337,23 +327,9 @@
                         {% csrf_token %}
                         <div style="margin-bottom:17.2px">
                           <div class="form-check form-check-success">
-                            <label class="form-check-label">
-                              {%if st.10 == False %}             
+                            <label class="form-check-label">           
                                 <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appn" checked="">
-                              {%else%}
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appn" >
-                              {%endif%}
-                              Approve without LOP
-                            </label>
-                          </div>
-                          <div class="form-check form-check-warning">
-                            <label class="form-check-label">
-                              {%if st.10 != False %}             
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appl" checked="">
-                              {%else%}
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appl" >
-                              {%endif%}
-                              Approve with LOP
+                              Approve
                             </label>
                           </div>
                           <div class="form-check form-check-danger">
@@ -371,8 +347,6 @@
                   </div>
                 </div> 
               </div>    
-
-
             {%endfor%}
 
             <hr>
@@ -454,13 +428,7 @@
                           <div class="form-check form-check-success">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appn">
-                              Approve without LOP
-                            </label>
-                          </div>
-                          <div class="form-check form-check-warning">
-                            <label class="form-check-label">             
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appl">
-                              Approve with LOP
+                              Approve
                             </label>
                           </div>
                           <div class="form-check form-check-danger">

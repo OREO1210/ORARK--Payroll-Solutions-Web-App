@@ -20,7 +20,6 @@ def hodleaveinfo(request):
             if x.statuses==0:
                 l=[]
                 delta=x.leave_edate-x.leave_sdate
-                print(delta.days)
                 l=[x.req_id,
                    x.emp.user.first_name,
                    x.emp.user.last_name,
@@ -36,12 +35,32 @@ def hodleaveinfo(request):
             elif x.statuses==1:
                 l=[]
                 delta=x.leave_edate-x.leave_sdate
-                l=[x.req_id,x.emp.user.first_name,x.emp.user.last_name,x.emp.user.email,x.emp.desg.desgname,x.applications,x.date_of_application,x.leave_sdate,x.leave_edate,x.leave_type,x.lop,delta.days]
+                l=[x.req_id,
+                   x.emp.user.first_name,
+                   x.emp.user.last_name,
+                   x.emp.user.email,
+                   x.emp.desg.desgname,
+                   x.applications,
+                   x.date_of_application,
+                   x.leave_sdate,
+                   x.leave_edate,
+                   x.leave_type,
+                   delta.days]
                 approved.append(l)
             else:
                 l=[]
                 delta=x.leave_edate-x.leave_sdate
-                l=[x.req_id,x.emp.user.first_name,x.emp.user.last_name,x.emp.user.email,x.emp.desg.desgname,x.applications,x.date_of_application,x.leave_sdate,x.leave_edate,x.leave_type,delta.days]
+                l=[x.req_id,
+                   x.emp.user.first_name,
+                   x.emp.user.last_name,
+                   x.emp.user.email,
+                   x.emp.desg.desgname,
+                   x.applications,
+                   x.date_of_application,
+                   x.leave_sdate,
+                   x.leave_edate,
+                   x.leave_type,
+                   delta.days]
                 rejected.append(l)
         return render(request,'hleave.html',{'pen': pending,'app':approved,'rej':rejected})
     else:
@@ -56,13 +75,8 @@ def hodleaveprocess(request, x):
             radi=request.POST.get('optionsRadios')
             if radi=="appn":
                 lrq.statuses = 1
-                lrq.lop = False
-            elif radi=="appl":
-                lrq.statuses = 1
-                lrq.lop = True
             else:
-                lrq.statuses=2
-                lrq.lop = False
+                lrq.statuses = 2
             lrq.save()
             
         return redirect("/leave/hod")
@@ -82,7 +96,6 @@ def empleave(request):
         lrq.leave_type=request.POST.get('ltype')
         lrq.applications=request.POST.get('applications')
         lrq.statuses=0
-        lrq.lop=0
         lrq.date_of_application=datetime.today()
         lrq.save()
         
@@ -94,7 +107,22 @@ def empleave(request):
 
 def empviewleave(request):    
     if request.user.is_authenticated and request.user.is_employee:
-        return render(request,"eleave.html",{'stu':final})
+        k = Employees.objects.get(user=request.user.id)
+        stud = LeaveRequests.objects.all().filter(emp=k)
+        final=[]
+        for x in stud:
+            l=[]
+            delta=x.leave_edate-x.leave_sdate
+            l=[x.req_id,
+               x.applications,
+               x.date_of_application,
+               x.leave_sdate,
+               x.leave_edate,
+               x.leave_type,
+               delta.days,
+               x.statuses]
+            final.append(l)
+        return render(request,"eleaveview.html",{'stu':final})
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'})
