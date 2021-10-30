@@ -145,3 +145,75 @@
         </ul>
       </nav>
       <!-- partial -->
+
+
+
+
+
+
+
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Your Leave Requests</h4>
+                  <p class="card-description">
+                    Status of all leave requests that you have applied
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Date of Application</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Leave Duration</th>
+                          <th>Leave type</th>
+                          
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {%for st in stu%}
+                          <tr data-bs-toggle="tooltip" data-placement="bottom" title="Details : {{st.1}}">
+                          <td>{{st.0}}</td>
+                          <td>{{st.2}}</td>
+                          <td>{{st.3}}</td>
+                          <td>{{st.4}}</td>
+                          <td>{{st.6}} days</td>
+                          <td>{{st.5}}</td>
+                          
+                          <td>
+                          {% if st.7 == 0 %}
+                            <label class="badge badge-dark">Pending</label>
+                          {% endif %}
+                          {% if st.7 == 1 %}
+                            <label class="badge badge-success">Approved</label>
+                          {% endif %}
+                          {% if st.7 == 2 %}
+                            <label class="badge badge-danger">Rejected</label>
+                          {% endif %}
+                          </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<script>
+  $('[data-bs-toggle="tooltip"]').tooltip();
+</script>
+
+
+
+
+{% endblock %}
