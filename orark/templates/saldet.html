@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+
+
+
+<div class="container-scroller">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="../../index.html"><img src="{%static 'images/logo.png'%}"
+                    class="mr-2" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{%static 'images/logo-mini.png'%}"
+                    alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="icon-menu"></span>
+            </button>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                data-toggle="offcanvas">
+                <span class="icon-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_settings-panel.html -->
+
+        <div id="right-sidebar" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+                        aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+                        aria-controls="chats-section">CHATS</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="setting-content"> </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../index.html">
+                        <i class="icon-grid menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                        aria-controls="ui-basic">
+                        <i class="icon-layout menu-icon"></i>
+                        <span class="menu-title">UI Elements</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link"
+                                    href="../../pages/ui-features/buttons.html">Buttons</a></li>
+                            <li class="nav-item"> <a class="nav-link"
+                                    href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                            <li class="nav-item"> <a class="nav-link"
+                                    href="../../pages/ui-features/typography.html">Typography</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+                        aria-controls="form-elements">
+                        <i class="icon-columns menu-icon"></i>
+                        <span class="menu-title">Form elements</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="form-elements">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">Basic
+                                    Elements</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
+                        aria-controls="charts">
+                        <i class="icon-bar-graph menu-icon"></i>
+                        <span class="menu-title">Charts</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/charts/chartjs.html">ChartJs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
+                        aria-controls="tables">
+                        <i class="icon-grid-2 menu-icon"></i>
+                        <span class="menu-title">Tables</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/tables/basic-table.html">Basic
+                                    table</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
+                        aria-controls="icons">
+                        <i class="icon-contract menu-icon"></i>
+                        <span class="menu-title">Icons</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="icons">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/icons/mdi.html">Mdi icons</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="icon-head menu-icon"></i>
+                        <span class="menu-title">User Pages</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register
+                                </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
+                        aria-controls="error">
+                        <i class="icon-ban menu-icon"></i>
+                        <span class="menu-title">Error pages</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="error">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404
+                                </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500
+                                </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../pages/documentation/documentation.html">
+                        <i class="icon-paper menu-icon"></i>
+                        <span class="menu-title">Documentation</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+
+
+
+
+
+
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+
+
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-title">Monthly Payroll Details</p>
+
+                            <form class="form-sample" method="post" action="/admin/pay/">
+                                {% csrf_token %}
+                                <p class="card-description">
+                                    Allowances
+                                </p>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputUsername1">Children Education Allowance</label>
+                                        <input type="float" class="form-control" name="cea">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputUsername1">House Rent Allowance</label>
+                                        <input type="float" class="form-control" name="hra">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputUsername1">Medical Allowance</label>
+                                        <input type="float" class="form-control" name="ma">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputUsername1">Travel Allowance</label>
+                                        <input type="float" class="form-control" name="ta">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputUsername1">Fixed Dearness Allowance</label>
+                                        <input type="float" class="form-control" name="fda">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleInputUsername1">Variable Dearness Allowance</label>
+                                        <input type="float" class="form-control" name="vda">
+                                    </div>
+                                </div>
+                                <p class="card-description">
+                                    Deductions
+                                </p>
+                                <div class="row">
+                                  
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputUsername1">Provident Fund</label>
+                                        <input type="float" class="form-control" name="pf">
+                                    </div>
+                                </div>
+                                <p class="card-description">
+                                    Bonus
+                                </p>
+                                <div class="row">
+                                
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputUsername1">Bonus</label>
+                                        <input type="float" class="form-control" name="pf">
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Submit" class="btn btn-primary mr-2">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- content-wrapper ends -->
+            <!-- partial:../../partials/_footer.html -->
+
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+
+<script src="{%static 'js/bulma-calendar.js'%}"></script>
+<script src="{%static 'js/bulma-calendar.min.js'%}"></script>
+<script src="{%static 'vendors/js/vendor.bundle.base.js'%}"></script>
+<script src="{%static 'vendors/typeahead.js/typeahead.bundle.min.js'%}"></script>
+<script src="{%static 'vendors/select2/select2.min.js'%}"></script>
+<script src="{%static 'js/off-canvas.js'%}"></script>
+<script src="{%static 'js/hoverable-collapse.js'%}"></script>
+<script src="{%static 'js/template.js'%}"></script>
+<script src="{%static 'js/settings.js'%}"></script>
+<script src="{%static 'js/todolist.js'%}"></script>
+<script src="{%static 'js/file-upload.js'%}"></script>
+<script src="{%static 'js/typeahead.js'%}"></script>
+<script src="{%static 'js/select2.js'%}"></script>
+
+
+{% endblock %}
