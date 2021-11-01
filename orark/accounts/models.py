@@ -10,6 +10,41 @@ GENDER_MALE = 0
 GENDER_FEMALE = 1
 GENDER_NONBINARY=2
 GENDER_CHOICES = [(GENDER_MALE, 'Male'), (GENDER_FEMALE, 'Female'),(GENDER_NONBINARY, 'Non-Binary')]
+BANK_CHOICES = [('Union Bank of India','Union Bank of India'),
+                ('Indian Bank','Indian Bank'),
+                ('AU Small Finance Bank','AU Small Finance Bank'),
+                ('Axis Bank','Axis Bank'),
+                ('Bank of Baroda','Bank of Baroda'),
+                ('Bank of India','Bank of India'),
+                ('Bank of Maharashtra','Bank of Maharashtra'),
+                ('Central Bank of India','Central Bank of India'),
+                ('Canara Bank','Canara Bank'),
+                ('Catholic Syrian Bank','Catholic Syrian Bank'),
+                ('Citi Bank','Citi Bank'),
+                ('DCB Bank','DCB Bank'),
+                ('Dena Bank','Dena Bank'),
+                ('Dhanalakshmi Bank','Dhanalakshmi Bank'),
+                ('Equitas Small Finance Bank','Equitas Small Finance Bank'),
+                ('Federal Bank','Federal Bank'),
+                ('HDFC Bank','HDFC Bank'),
+                ('HSBC Bank','HSBC Bank'),
+                ('ICICI Bank','ICICI Bank'),
+                ('Indian Overseas Bank','Indian Overseas Bank'),
+                ('IndusInd Bank','IndusInd Bank'),
+                ('IDBI Bank','IDBI Bank'),
+                ('IDFC Bank','IDFC Bank'),
+                ('Jammu and Kashmir Bank','Jammu and Kashmir Bank'),
+                ('Karnataka Bank','Karnataka Bank'),
+                ('Kotak Mahindra Bank','Kotak Mahindra Bank'),
+                ('Punjab National Bank','Punjab National Bank'),
+                ('Punjab and Sind Bank','Punjab and Sind Bank'),
+                ('RBL Bank','RBL Bank'),
+                ('Standard Chartered Bank','Standard Chartered Bank'),
+                ('State Bank Of India','State Bank Of India'),
+                ('South Indian Bank','South Indian Bank'),
+                ('UCO Bank','UCO Bank'),
+                ('UYI Bank','UYI Bank'),
+                ('Yes Bank','Yes Bank')]
 
 
 
@@ -62,54 +97,52 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
     def __str__(self):
-        return self.email
-
-class BaseSalary(models.Model):
-    salary_id = models.BigIntegerField(db_column='Salary_id', primary_key=True)  # Field name made lowercase.
-    dep = models.ForeignKey('Dept', models.DO_NOTHING, db_column='Dep_id')  # Field name made lowercase.
-    desg = models.ForeignKey('Designation', models.DO_NOTHING, db_column='Desg_id')  # Field name made lowercase.
-    amount = models.FloatField(db_column='Amount')  # Field name made lowercase.
-    da = models.FloatField(db_column='DA', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'base_salary'
-
-    def __str__(self):
-        return self.dep.deptname
-    
+        return self.email  
 
 
-class ComplementarySalary(models.Model):
-    comp_id = models.BigIntegerField(db_column='Comp_id', primary_key=True)  # Field name made lowercase.
-    bonus = models.FloatField(db_column='BONUS', blank=True, null=True)  # Field name made lowercase.
-    ma = models.FloatField(db_column='MA', blank=True, null=True)  # Field name made lowercase.
-    hra = models.FloatField(db_column='HRA', blank=True, null=True)  # Field name made lowercase.
-    per_inc = models.IntegerField(db_column='per_INC', blank=True, null=True)  # Field name made lowercase.
-    cea = models.FloatField(db_column='CEA', blank=True, null=True)  # Field name made lowercase.
-    year = models.PositiveIntegerField(default=current_year(), validators=[MinValueValidator(1984), max_value_current_year])
-
-    class Meta:
-        db_table = 'complementary_salary'
-    
-    def __str__(self):
-        return self.year.__str__()
-    
-
-class Deductions(models.Model):
-    ded_id = models.BigIntegerField(db_column='Ded_id', primary_key=True)  # Field name made lowercase.
+class MonthlySalary(models.Model):
+    slip_id = models.AutoField(db_column='Slip_id', primary_key=True)  # Field name made lowercase.
     emp = models.ForeignKey('Employees', models.DO_NOTHING, db_column='Emp_id')  # Field name made lowercase.
-    lop_days = models.IntegerField(db_column='LOP_days', blank=True, null=True)  # Field name made lowercase.
+    year = models.IntegerField(db_column='Year', blank=True, null=True) # Field name made lowercase.
+    month = models.IntegerField(db_column='Month', blank=True, null=True) # Field name made lowercase.
+    workingdays = models.IntegerField(db_column='Working_Days', blank=True, null=True) # Field name made lowercase.
+    absentdays = models.IntegerField(db_column='Absent_Days', blank=True, null=True) # Field name made lowercase.
+    paydays = models.IntegerField(db_column='Pay_Days', blank=True, null=True) # Field name made lowercase.
     pf = models.FloatField(db_column='PF')  # Field name made lowercase.
     esic = models.FloatField(db_column='ESIC')  # Field name made lowercase.
-    tax = models.FloatField(db_column='TAX')  # Field name made lowercase.
+    itax = models.FloatField(db_column='ITAX')  # Field name made lowercase.
+    ptax = models.FloatField(db_column='PTAX')  # Field name made lowercase.
     lwf = models.FloatField(db_column='LWF', blank=True, null=True)  # Field name made lowercase.
-    nps = models.FloatField(db_column='NPS', blank=True, null=True)  # Field name made lowercase.
-    lop = models.FloatField(db_column='LOP', blank=True, null=True)  # Field name made lowercase.
+    bonus = models.FloatField(db_column='BONUS', blank=True, null=True)  # Field name made lowercase.
+    ma = models.FloatField(db_column='MA', blank=True, null=True)  # Field name made lowercase.
+    ta = models.FloatField(db_column='TA', blank=True, null=True)  # Field name made lowercase.
+    hra = models.FloatField(db_column='HRA', blank=True, null=True)  # Field name made lowercase.
+    cea = models.FloatField(db_column='CEA', blank=True, null=True)  # Field name made lowercase.
+
     class Meta:
-        db_table = 'deductions'
+        db_table = 'monthly_salary'
     
     def __str__(self):
-        return self.emp.user.first_name + ' ' + self.emp.user.last_name
+        return self.year+' | '+self.month+' | '+self.emp.emp_id
+    
+    
+
+
+class SlabTable(models.Model):
+    llim = models.FloatField(db_column='Lower_Limit')  # Field name made lowercase.
+    ulim = models.FloatField(db_column='Upper_Limit')  # Field name made lowercase.
+    itax = models.FloatField(db_column='Income_Tax')  # Field name made lowercase.
+    ptax = models.FloatField(db_column='Professional_Tax')  # Field name made lowercase.
+    esic = models.FloatField(db_column='ESIC')  # Field name made lowercase.
+    
+    class Meta:
+        db_table = 'slab_table'
+    
+    def __str__(self):
+        return self.year
+
+    
+
 
 class Dept(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
@@ -129,6 +162,7 @@ class Designation(models.Model):
     desg_id = models.BigAutoField(db_column='Desg_id', primary_key=True)  # Field name made lowercase.
     dep = models.ForeignKey(Dept, models.DO_NOTHING, db_column='Dep_id')  # Field name made lowercase.
     desgname = models.CharField(db_column='DesgName', max_length=100)  # Field name made lowercase.
+    amount = models.FloatField(db_column='Amount')  # Field name made lowercase.
 
     class Meta:
         db_table = 'designation'
@@ -147,8 +181,12 @@ class Employees(models.Model):
     contact = models.CharField(max_length=18,db_column='Contact')  # Field name made lowercase.
     addresses = models.CharField(db_column='Addresses', max_length=700)  # Field name made lowercase.
     hire_date = models.DateField(db_column='Hire_date')  # Field name made lowercase.
-    metrocity = models.BooleanField(default=False)
     no_of_children = models.IntegerField(db_column='No_of_Children')  # Field name made lowercase.
+    pannum = models.CharField(max_length=10,db_column='PAN')  # Field name made lowercase.
+    pfnum = models.CharField(max_length=22,db_column='PF_Account_Num')  # Field name made lowercase.
+    bank = models.CharField(choices=BANK_CHOICES,max_length=100,db_column='Bank_Name')  # Field name made lowercase.
+    bankaccnum = models.CharField(max_length=18,db_column='Bank_Account_Num')  # Field name made lowercase.
+    
 
     class Meta:
          
