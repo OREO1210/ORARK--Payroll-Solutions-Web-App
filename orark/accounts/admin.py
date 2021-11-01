@@ -41,7 +41,6 @@ class UserrAdmin(UserAdmin):
 
 admin.site.register(Employees)
 admin.site.register(User,UserrAdmin)
-admin.site.register(BaseSalary)
-admin.site.register(ComplementarySalary)
 admin.site.register(Dept)
 admin.site.register(Designation)
+admin.site.register(SlabTable)
