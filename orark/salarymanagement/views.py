@@ -36,3 +36,5 @@ def saladett(request):
         vda=request.POST.get('vda')
         pf=request.POST.get('pf')
         b=request.POST.get('b')
+        
+   
