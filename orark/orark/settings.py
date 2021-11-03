@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'hodapp',
     'widget_tweaks',
     'leavemangement',
-    'attendence'
+    'attendence',
+    'salarymanagement'
 ]
 
 MIDDLEWARE = [

@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('leave/', include('leavemangement.urls',namespace='leavemangement')),
     path('recep/', include('attendence.urls',namespace='attendence')),
+    path('ad/', include('salarymanagement.urls', namespace='salarymanagement'))
 ]
 
 urlpatterns= urlpatterns + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

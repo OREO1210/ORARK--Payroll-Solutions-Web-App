@@ -181,7 +181,7 @@
                         <div class="card-body">
                             <p class="card-title">Monthly Payroll Details</p>
 
-                            <form class="form-sample" method="post" action="/admin/pay/">
+                            <form class="form-sample" method="post" action="/ad/pay/">
                                 {% csrf_token %}
                                 <p class="card-description">
                                     Allowances
@@ -197,21 +197,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-6">
                                         <label for="exampleInputUsername1">Medical Allowance</label>
                                         <input type="float" class="form-control" name="ma">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-6">
                                         <label for="exampleInputUsername1">Travel Allowance</label>
                                         <input type="float" class="form-control" name="ta">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-6">
                                         <label for="exampleInputUsername1">Fixed Dearness Allowance</label>
                                         <input type="float" class="form-control" name="fda">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-6">
                                         <label for="exampleInputUsername1">Variable Dearness Allowance</label>
                                         <input type="float" class="form-control" name="vda">
                                     </div>
@@ -221,7 +221,7 @@
                                 </p>
                                 <div class="row">
                                   
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-8">
                                         <label for="exampleInputUsername1">Provident Fund</label>
                                         <input type="float" class="form-control" name="pf">
                                     </div>
@@ -231,9 +231,9 @@
                                 </p>
                                 <div class="row">
                                 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-8">
                                         <label for="exampleInputUsername1">Bonus</label>
-                                        <input type="float" class="form-control" name="pf">
+                                        <input type="float" class="form-control" name="b">
                                     </div>
                                 </div>
 
