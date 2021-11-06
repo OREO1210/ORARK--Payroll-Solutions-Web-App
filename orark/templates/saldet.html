@@ -184,6 +184,24 @@
                             <form class="form-sample" method="post" action="/ad/pay/">
                                 {% csrf_token %}
                                 <p class="card-description">
+                                    General
+                                </p>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputUsername1">Month</label>
+                                        <input type="month" class="form-control" name="month">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputUsername1">Maximum Paid Leaves</label>
+                                        <input type="number" class="form-control" name="maxleave">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputUsername1">Daily Working Hours</label>
+                                        <input type="time" class="form-control" name="maxhours" value="08:00:00">
+                                    </div>
+                                </div>
+
+                                <p class="card-description">
                                     Allowances
                                 </p>
                                 <div class="row">
@@ -195,25 +213,19 @@
                                         <label for="exampleInputUsername1">House Rent Allowance</label>
                                         <input type="float" class="form-control" name="hra">
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="exampleInputUsername1">Medical Allowance</label>
                                         <input type="float" class="form-control" name="ma">
                                     </div>
+                                </div>
+                                <div class="row"> 
                                     <div class="form-group col-md-4">
                                         <label for="exampleInputUsername1">Travel Allowance</label>
                                         <input type="float" class="form-control" name="ta">
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label for="exampleInputUsername1">Fixed Dearness Allowance</label>
+                                        <label for="exampleInputUsername1">Dearness Allowance</label>
                                         <input type="float" class="form-control" name="fda">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="exampleInputUsername1">Variable Dearness Allowance</label>
-                                        <input type="float" class="form-control" name="vda">
                                     </div>
                                 </div>
                                 <p class="card-description">

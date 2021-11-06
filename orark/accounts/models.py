@@ -108,16 +108,20 @@ class MonthlySalary(models.Model):
     workingdays = models.IntegerField(db_column='Working_Days', blank=True, null=True) # Field name made lowercase.
     absentdays = models.IntegerField(db_column='Absent_Days', blank=True, null=True) # Field name made lowercase.
     paydays = models.IntegerField(db_column='Pay_Days', blank=True, null=True) # Field name made lowercase.
+    basic = models.FloatField(db_column='BASIC')  # Field name made lowercase.
+    othr = models.IntegerField(db_column='OT_HR')  # Field name made lowercase.
+    otpay = models.FloatField(db_column='OTPAY')  # Field name made lowercase.
+    da = models.FloatField(db_column='DA')  # Field name made lowercase.
     pf = models.FloatField(db_column='PF')  # Field name made lowercase.
     esic = models.FloatField(db_column='ESIC')  # Field name made lowercase.
     itax = models.FloatField(db_column='ITAX')  # Field name made lowercase.
     ptax = models.FloatField(db_column='PTAX')  # Field name made lowercase.
-    lwf = models.FloatField(db_column='LWF', blank=True, null=True)  # Field name made lowercase.
     bonus = models.FloatField(db_column='BONUS', blank=True, null=True)  # Field name made lowercase.
     ma = models.FloatField(db_column='MA', blank=True, null=True)  # Field name made lowercase.
     ta = models.FloatField(db_column='TA', blank=True, null=True)  # Field name made lowercase.
     hra = models.FloatField(db_column='HRA', blank=True, null=True)  # Field name made lowercase.
     cea = models.FloatField(db_column='CEA', blank=True, null=True)  # Field name made lowercase.
+    total = models.FloatField(db_column='Total', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         db_table = 'monthly_salary'
@@ -139,7 +143,7 @@ class SlabTable(models.Model):
         db_table = 'slab_table'
     
     def __str__(self):
-        return self.year
+        return self.llim.__str__() + ' - ' + self.ulim.__str__()
 
     
 
