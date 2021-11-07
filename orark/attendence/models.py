@@ -9,7 +9,7 @@ class Attendence(models.Model):
     today_date = models.DateField(db_column='Date', default=datetime.datetime.now)  # Field name made lowercase.
     entry_time = models.TimeField(db_column='Entry Time')
     exit_time = models.TimeField(db_column='Exit Time')
-    empid = models.ForeignKey(Employees, models.DO_NOTHING, db_column='Emp ID')  # Field name made lowercase.
+    emp = models.ForeignKey(Employees, models.DO_NOTHING, db_column='Emp ID')  # Field name made lowercase.
     emaill=models.ForeignKey(User, models.DO_NOTHING, db_column='email id')
     working_hrs = models.CharField(max_length=100,db_column='Working hours', default='00:00') # Field name made lowercase Field name made lowercase.
     deptid = models.ForeignKey( Dept, models.DO_NOTHING, db_column='department ID')  # Field name made lowercase.

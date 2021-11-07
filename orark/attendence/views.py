@@ -45,7 +45,7 @@ def attd_entry(request):
         t1=att.exit_time
         t2=att.entry_time
         att.working_hrs= datetime.datetime.strptime(t1,FMT) - datetime.datetime.strptime(t2,FMT)
-        att.empid= y
+        att.emp= y
         att.deptid= y.dep
         att.save()
         return redirect( '/recep/attend/')
