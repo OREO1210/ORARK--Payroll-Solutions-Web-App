@@ -44,29 +44,30 @@ def saladett(request):
         maxleave=request.POST.get('maxleave')
         months=request.POST.get('month')
         maxhours=request.POST.get('maxhours')
-        print(maxhours)
-        print("$$$$$$$")
         
         usrlist=Employees.objects.all()
         alldays=days_cur_month(months)
         
         for usr in usrlist:  
         # Attendance processing
-            atx = Attendence.objects.filter(emp=usr).values_list('today_date')
+            atx = Attendence.objects.filter(emp=usr)
             appl = LeaveRequests.objects.filter(emp=usr, statuses=1)
             appldays = []
+            attx=[]
             for x in appl:
                 sdate = datetime.datetime.strptime(str(x.leave_sdate),'%Y-%m-%d')
                 edate = datetime.datetime.strptime(str(x.leave_edate),'%Y-%m-%d')
                 y = [(sdate + timedelta(days=x)).strftime('%Y-%m-%d') for x in range((edate-sdate).days)]
-                print(y)
                 appldays.append(edate)
                 appldays.append(y)
+            for x in atx:
+                sdate = str(x.today_date)
+                attx.append(sdate)
             workingdays=0
             absentdays=0
             paydays=0
             for x in alldays:
-                if x in atx:
+                if x in attx:
                     workingdays += 1
                     paydays += 1
                 elif x in appldays:
@@ -80,14 +81,12 @@ def saladett(request):
             othours=0
             for w in whrs:
                 z=str(w)[2:-3]
-                print(z)
-                print("#########################")
                 t1=datetime.datetime.strptime(maxhours,"%H:%M")
                 t2=datetime.datetime.strptime(z,"%H:%M:%S")
                 
                 ot=t1-t2
                 ox=str(ot)
-                if ox[0] is not '-':
+                if ox[0] != '-':
                     othours += int(ox[0])
         # Overtime processing ends
             basic = (usr.desg.amount)*(paydays)
