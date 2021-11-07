@@ -51,7 +51,8 @@ def attd_entry(request):
         return redirect( '/recep/attend/')
         
     elif request.user.is_authenticated and request.user.is_receptionist:
-        return render(request,"att_sheet.html")
+        x=Employees.objects.all()
+        return render(request,"att_sheet.html",{'stu':x})
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Receptionist",'typ':'recep'})
