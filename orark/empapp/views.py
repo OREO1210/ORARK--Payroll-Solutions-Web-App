@@ -30,3 +30,13 @@ def home(request):
 
         
     
+
+def paysl(request):
+    if request.user.is_authenticated and request.user.is_employee:
+        k =Employees.objects.get( user_id = request.user.id )
+        payy= MonthlySalary.objects.all()
+        print("output------------------------------------", k.emp_id)
+        return render(request,"pay.html")
+    else:
+        messages.error(request,"Please Login to continue")
+    return render(request,"login.html",{'type':"Employee",'typ':'emp'}) 
