@@ -16,7 +16,7 @@ def view_login(request):
             user = authenticate(email=email, password=password)
             if user is not None and user.is_receptionist:
                     login(request,user)
-                    return redirect('/recep/home')
+                    return redirect('/recep/attend')
                 
             else:
                 messages.error(request,"Invalid email or password")
@@ -24,12 +24,6 @@ def view_login(request):
     return render(request,"login.html",{'type':"Receptionist",'typ':'recep'})
 
 
-def home(request):
-    if request.user.is_authenticated and request.user.is_receptionist:
-        return render(request,"rehome.html")
-    else:
-        messages.error(request,"Please Login to continue")
-    return render(request,"login.html",{'type':"Receptionist",'typ':'recep'})
 
 def attd_entry(request):
     if request.method =='POST':

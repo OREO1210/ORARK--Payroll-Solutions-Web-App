@@ -29,9 +29,6 @@ def view_login(request):
 def home(request):
     return render(request,"adhome.html",{'type':"AD",'typ':'ad'})
 
-def addhome(request):
-    return render(request,"saldet.html")
-
 def saladett(request):
     if request.method =='POST':
         cea =request.POST.get('cea')
@@ -135,9 +132,18 @@ def saladett(request):
             msl.hra=hral
             msl.cea=ceal
             msl.total=totl
-            
+            msl.gearn= float(basic)+ float(otpp)+ float(da) + float(ma) +float(tral) +float (hra)+float (ceal)+float(bons)
+            msl.gded= float(itxx)+ float(ptxx) +float(escc) + float(pfnd)
             msl.save()
-        
+            
+        return redirect('/ad/addhome')
+    elif request.user.is_authenticated and request.user.is_superuser:
+        return render(request,"saldet.html")
+    else:
+        messages.error(request,"Please Login to continue")
+
+    return render(request,"login.html",{'type':"AD",'typ':'ad'})
+
         # LeaveRequests.objects.all().delete()
         # Attendence.objects.all().delete()
 

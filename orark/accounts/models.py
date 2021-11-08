@@ -121,13 +121,15 @@ class MonthlySalary(models.Model):
     ta = models.FloatField(db_column='TA', blank=True, null=True)  # Field name made lowercase.
     hra = models.FloatField(db_column='HRA', blank=True, null=True)  # Field name made lowercase.
     cea = models.FloatField(db_column='CEA', blank=True, null=True)  # Field name made lowercase.
+    gded = models.FloatField(db_column='gded', blank=True, null=True)  # Field name made lowercase.
+    gearn = models.FloatField(db_column='gearn', blank=True, null=True)  # Field name made lowercase.
     total = models.FloatField(db_column='Total', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         db_table = 'monthly_salary'
     
     def __str__(self):
-        return self.year+' | '+self.month+' | '+self.emp.emp_id
+        return self.year.__str__()+' | '+self.month.__str__()+' | '+self.emp.emp_id.__str__()
     
     
 

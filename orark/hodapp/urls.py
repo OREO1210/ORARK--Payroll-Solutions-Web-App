@@ -5,7 +5,7 @@ app_name = "hodapp"
 
 urlpatterns=[
     path('login/',views.view_login,name='login'),
-    path('home/',views.home,name='home'),
+    path('profile/',views.hodpro,name='profile'),
     path('deptempinfo/',views.userinfo,name='deptempinfo'),
 ]
 

@@ -5,6 +5,7 @@ app_name = "empapp"
 
 urlpatterns=[
     path('login/',views.view_login,name='login'),
-    path('home/',views.home,name='home'),
-    path('payslip/',views.paysl,name='paysl'),
+    path('profile/',views.emppro,name='profile'),
+    path('payslip/',views.paym,name='paym'),
+    path('payview/',views.paysl,name='paysl')
 ]

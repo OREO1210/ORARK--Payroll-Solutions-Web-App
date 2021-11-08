@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from accounts.models import *
 from datetime import datetime
+from django.contrib.messages import get_messages
+import calendar
+from django.core.exceptions import ObjectDoesNotExist
 
 def view_login(request):
     if request.method=='POST':
@@ -12,7 +15,7 @@ def view_login(request):
             user = authenticate(email=email, password=password)
             if user is not None and user.is_employee:
                     login(request,user)
-                    return redirect('/emp/home')
+                    return redirect('/emp/profile')
                 
             else:
                 messages.error(request,"Invalid email or password")
@@ -21,22 +24,43 @@ def view_login(request):
 
 
 
-def home(request):
+
+
+def paym(request):
     if request.user.is_authenticated and request.user.is_employee:
-        return render(request,"ehome.html")
+        return render(request,"salcur.html")
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'})
 
-        
-    
 
 def paysl(request):
-    if request.user.is_authenticated and request.user.is_employee:
-        k =Employees.objects.get( user_id = request.user.id )
-        payy= MonthlySalary.objects.all()
-        print("output------------------------------------", k.emp_id)
-        return render(request,"pay.html")
+    if request.method=='POST':
+        m= request.POST.get('m')
+        k =Employees.objects.get( user_id = request.user.id)
+        yr= m[:4]
+        mon= m[-2:]
+        try:
+            payy= MonthlySalary.objects.get(emp = k,year=int(yr),month=int(mon))
+        except ObjectDoesNotExist:
+            payy = None
+        if payy is not None :
+            moth= calendar.month_name[int(mon)]
+            return render(request,"pay.html",{ 'p':payy,'k':k,'moth':moth})
+        else:
+             
+            return render( request,"salcur.html")
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'}) 
+
+
+def emppro(request):
+    if request.user.is_authenticated and request.user.is_employee:
+
+        # code for profile 
+        
+        return render(request,"empprofile.html")
+    else:
+        messages.error(request,"Please Login to continue")
+    return render(request,"login.html",{'type':"Employee",'typ':'emp'})

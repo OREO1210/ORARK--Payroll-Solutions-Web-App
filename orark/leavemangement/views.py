@@ -78,8 +78,7 @@ def hodleaveprocess(request, x):
             else:
                 lrq.statuses = 2
             lrq.save()
-            
-        return redirect("/leave/hod")
+        return redirect('/leave/hod' )
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"HOD",'typ':'hod'})
@@ -98,6 +97,7 @@ def empleave(request):
         lrq.statuses=0
         lrq.date_of_application=datetime.today()
         lrq.save()
+        return redirect("/leave/emp")
         
     elif request.user.is_authenticated and request.user.is_employee:
         return render(request,"eleave.html",{'date':datetime.today().strftime('%Y-%m-%d')})

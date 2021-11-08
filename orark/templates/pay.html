@@ -1,4 +1,10 @@
-<html>
+
+{% extends 'base2.html' %}
+{% block content %}
+{%load static%}
+
+
+<! DOCTYPE html>
 
 <head>
     <style>
@@ -11,66 +17,74 @@
         table td {
             line-height: 25px;
             padding-left: 15px;
+            
         }
-
+       
         table th {
-            background-color: #60b3f7;
+            background-color: #d1e7fa;
             color: #363636;
+             padding-left: 15px;
+            
         }
+        div {
+           
+            padding: 80px 140px 160px 140px;
+            box-sizing: border-box;
+            }
     </style>
 
 </head>
-
+<div>
 <body >
     <table border="1">
-        <tr height="90px"
-            style="background-color:#363636;color:#F5F7FF;text-align:center;font-size:29px; font-weight:10;">
+        <tr height="75px"
+            style="background-color:#363636;color:#F5F7FF;text-align:center;font-size:34px; font-weight:10;">
             <td colspan='4'>ORARK - Payroll Solutions</td>
         </tr>
-        <tr height="12px" style="background-color:#F5F7FF;color:#0c0b0b;text-align:center;font-size:15px; font-weight:500;">
-            <td colspan='4'>Payslip for the month -2020</td>
+        <tr height="12px" style="background-color:#F5F7FF;color:#585757f5;text-align:center;font-size:15px; font-weight:500;">
+            <td colspan='4'>Payslip for {{ moth }} - {{p.year}}</td>
         </tr>
        
         <tr>
             <th>Slip Id:</th>
-            <td>0123456</td>
+            <td>{{ p.slip_id }}</td>
             <th>Name</th>
-            <td>Chandra</td>
+            <td>{{ request.user.first_name }} {{ request.user.last_name}}</td>
         </tr>
         <!-----2 row--->
         <tr>
             <th>Bank</th>
-            <td>x0x0x0</td>
+            <td>{{ k.bank }}</td>
             <th>Bank A/c No.</th>
-            <td>0x2x6x25x6</td>
+            <td>{{ k.bankaccnum }}</td>
         </tr>
         <!------3 row---->
         <tr>
             <th>Emp No.</th>
-            <td>23/02/xxxx</td>
+            <td> {{ k.emp_id }}</td>
             <th>Absent Days</th>
-            <td>0</td>
+            <td>{{ p.absentdays }}</td>
         </tr>
         <!------4 row---->
         <tr>
             <th>PF No.</th>
-            <td>26123456</td>
-            <th>Pay days</th>
-            <td>30</td>
+            <td>{{ k.pfnum }}</td>
+            <th>Pay Days</th>
+            <td>{{ p.paydays}}</td>
         </tr>
         <!------5 row---->
         <tr>
             <th>Pan No.</th>
-            <td>India</td>
+            <td>{{ k.pannum }}</td>
             <th>Working Days</th>
-            <td>30</td>
+            <td>{{ p.workingdays}}</td>
         </tr>
         <!------6 row---->
         <tr>
             <th>Department</th>
-            <td>IT</td>
+            <td>{{ k.dep }}</td>
             <th>Designation</th>
-            <td>Designer</td>
+            <td>{{ k.desg }}</td>
         </tr>
     </table>
     <tr></tr>
@@ -78,63 +92,65 @@
     <table border="1">
         <tr>
             <th>Earnings</th>
-            <th>Amount</th>
+            <th style="text-align: right; padding-right:20px;">Amount</th>
             <th>Deductions</th>
-            <th>Amount</th>
+            <th style="text-align: right; padding-right:20px;">Amount</th>
         </tr>
         <tr>
             <td>Basic</td>
-            <td>29000</td>
-            <td>provident fund</td>
-            <td>1900</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.basic|floatformat:2 }}</td>
+            <td>Provident Fund</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.pf|floatformat:2}}</td>
         </tr>
         <tr>
             <td>Dearness Allowance</td>
-            <td>2000</td>
-            <td>professional tax</td>
-            <td>600</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.da|floatformat:2}}</td>
+            <td>Professional tax</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.ptax|floatformat:2}}</td>
         </tr>
         <tr>
             <td>Medical Allowance</td>
-            <td>400</td>
-            <td>Income tax</td>
-            <td>500</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.ma|floatformat:2}}</td>
+            <td>Income Tax</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.itax|floatformat:2}}</td>
         </tr>
         <tr>
             <td>Travel Allowance</td>
-            <td>3000</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.ta|floatformat:2}}</td>
             <td>ESIC</td>
-            <td>xxx</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.esic|floatformat:2}}</td>
         </tr>
         <tr>
             <td>House Rent Allowance</td>
-            <td>2000</td>
+            <td style="text-align: right; padding-right:20px;">{{p.hra|floatformat:2}}</td>
         </tr>
         <tr>
             <td>Children Education Allowance</td>
-            <td>2000</td>
+            <td style="text-align: right; padding-right:20px;">{{p.cea|floatformat:2}}</td>
         </tr>
         <tr>
-            <td>Overtime pay ( overtime hours: )</td>
-            <td>1000</td>
+            <td>Overtime Pay ( Overtime Hours : {{p.othr}} )</td>
+            <td style="text-align: right; padding-right:20px;">{{ p.otpay|floatformat:2 }}</td>
         </tr>
         <tr>
-            <td>bonus</td>
-            <td>500</td>
+            <td>Bonus</td>
+            <td style="text-align: right; padding-right:20px;"> {{ p.bonus|floatformat:2 }}</td>
         </tr>
         <tr>
             <th>Gross Earnings</th>
-            <td>Rs.38500</td>
+            <td style="text-align: right; padding-right:20px;">₹ {{ p.gearn|floatformat:2 }}</td> </td>
             <th>Gross Deductions</th>
-            <td>Rs.3000</td>
+            <td style="text-align: right; padding-right:20px;">₹ {{ p.gded|floatformat:2 }}</td>
         </tr>
         <tr>
             <td></td>
-            <td><strong>NET PAY</strong></td>
-            <td>Rs.35500</td>
+            <td style="text-align: center; padding-right:20px; font-weight:800px;"><strong>NET PAY</strong></td>
+            <td style="text-align: center; padding-right:20px; font-weight:800px; background-color: #c7f7d6;"> ₹    {{p.total|floatformat:2}}</td>
             <td></td>
         </tr>
     </table>
 </body>
 
-</html>
+</div>
+
+{% endblock %}

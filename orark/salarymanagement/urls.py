@@ -6,6 +6,6 @@ app_name = "salarymanagement"
 urlpatterns=[
     path('home/',views.home,name='adhome'),
     path('login/',views.view_login,name='adlogin'),
-    path('addhome/',views.addhome,name='addhome'),
-    path('pay/',views.saladett,name='pay'),
+    path('addhome/',views.saladett,name='addhome'),
+   
 ]

@@ -13,7 +13,7 @@ def view_login(request):
             user = authenticate(email=email, password=password)
             if user is not None and user.is_hod:
                     login(request,user)
-                    return redirect('/hod/home')
+                    return redirect('/hod/profile')
                 
             else:
                 messages.error(request,"Invalid email or password")
@@ -21,13 +21,17 @@ def view_login(request):
     return render(request,"login.html",{'type':"HOD",'typ':'hod'})
 
 
-
-def home(request):
+def hodpro(request):
     if request.user.is_authenticated and request.user.is_hod:
-        return render(request,"hhome.html")
+
+        #code for hod profile 
+        
+        return render(request,'hodprofile.html')
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"HOD",'typ':'hod'})
+
+
 
 
 def userinfo(request):

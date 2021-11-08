@@ -45,9 +45,21 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item active">
-                    <a class="nav-link active" href="../recep/attend" aria-expanded="false">
-                        <i class="ti-calendar menu-icon"></i>
-                        <span class="menu-title">Attendance</span>
+                    <a class="nav-link" href="/hod/profile" aria-expanded="false">
+                        <i class="ti-user menu-icon"></i>
+                        <span class="menu-title">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/hod/deptempinfo" aria-expanded="false">
+                        <i class="ti-info menu-icon"></i>
+                        <span class="menu-title">Department Info</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/leave/hod" aria-expanded="false">
+                        <i class="ti-bookmark menu-icon"></i>
+                        <span class="menu-title">Leave Requests</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -77,57 +89,7 @@
 
 
 
-
-
-
-                <div class="col-6 grid-margin">
-                    <div class="card ">
-                        <div class="card-body">
-                            <p class="card-title">Attendance </p>
-
-                            <form class="form-sample" method="post" action="/recep/attend/">
-                                {% csrf_token %}
-                                <p class="card-description">
-                                    Employee Attendance Entry
-                                </p>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="exampleInputUsername1">Email</label>
-                                        <input type="email" class="form-control" name="mail" placeholder='abc@orark.com'
-                                            list="suggestions">
-                                        <datalist id="suggestions">
-                                            {%for y in stu%}
-                                            <option value="{{y}}">
-                                                {%endfor%}
-                                        </datalist>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="exampleInputUsername1">Date</label>
-                                        <input type="date" class="form-control" name="tdate" value={{date}}>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleInputUsername1">Entry Time</label>
-                                        <input type="time" class="form-control" name="entme">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleInputUsername1">Exit Time</label>
-                                        <input type="time" class="form-control" name="extme">
-                                    </div>
-                                </div>
-                                <input type="submit" value="Mark Attendance"
-                                    class="btn btn-inverse-success btn-lg btn-block">
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-
-
 
             <!-- content-wrapper ends -->
             <!-- partial:../../partials/_footer.html -->
