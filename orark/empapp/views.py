@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
 from accounts.models import *
-from datetime import datetime
+from datetime import date, timedelta, datetime
 from django.contrib.messages import get_messages
 import calendar
 from django.core.exceptions import ObjectDoesNotExist
@@ -28,7 +28,9 @@ def view_login(request):
 
 def paym(request):
     if request.user.is_authenticated and request.user.is_employee:
-        return render(request,"salcur.html")
+        currentMonth = datetime.now().month
+        currentYear = datetime.now().year
+        return render(request,"salcur.html",{'m':currentMonth,'y':currentYear})
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'})
@@ -47,9 +49,14 @@ def paysl(request):
         if payy is not None :
             moth= calendar.month_name[int(mon)]
             return render(request,"pay.html",{ 'p':payy,'k':k,'moth':moth})
-        else:
-             
-            return render( request,"salcur.html")
+        else :
+            return render(request,"noslip.html")
+        
+    elif request.user.is_authenticated and request.user.is_employee:
+        currentMonth = datetime.datetime.now().month
+        currentYear = datetime.datetime.now().year
+        return render(request,"salcur.html",{'m':currentMonth,'y':currentYear})
+
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'}) 

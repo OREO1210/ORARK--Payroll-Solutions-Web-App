@@ -18,7 +18,9 @@ def view_login(request):
             user = authenticate(email=email, password=password)
             if user is not None and user.is_superuser:
                     login(request,user)
-                    return redirect('/ad/addhome')
+                    currentMonth = datetime.now().month
+                    currentYear = datetime.now().year
+                    return render(request,"saldet.html",{'m':currentMonth,'y':currentYear})
             else:
                 messages.error(request,"Invalid email or password")
 
@@ -134,11 +136,12 @@ def saladett(request):
             msl.total=totl
             msl.gearn= float(basic)+ float(otpp)+ float(da) + float(ma) +float(tral) +float (hra)+float (ceal)+float(bons)
             msl.gded= float(itxx)+ float(ptxx) +float(escc) + float(pfnd)
-            msl.save()
-            
+            msl.save()    
         return redirect('/ad/addhome')
     elif request.user.is_authenticated and request.user.is_superuser:
-        return render(request,"saldet.html")
+        currentMonth = datetime.datetime.now().month
+        currentYear = datetime.datetime.now().year
+        return render(request,"saldet.html",{'m':currentMonth,'y':currentYear})
     else:
         messages.error(request,"Please Login to continue")
 

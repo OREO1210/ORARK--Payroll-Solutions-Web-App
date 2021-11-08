@@ -52,7 +52,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="ti-bookmark menu-icon"></i>
+                        <i class="ti-agenda menu-icon"></i>
                         <span class="menu-title">Leave</span>
                         <i class="menu-arrow"></i>
                     </a>
@@ -69,7 +69,6 @@
                         <span class="menu-title">View Payslip</span>
                     </a>
                 </li>
-            
                 <li class="nav-item">
                     <a class="nav-link" href="/">
                         <i class="ti-power-off menu-icon"></i>
@@ -96,11 +95,10 @@
                             <p class="card-description">
                                 Choose month and year to access your payslip
                             </p>
-                            <form class="form-inline" method="post" action="/emp/payview/">
+                            <form class="form-inline" method="post" action="/emp/payview/" target="_blank">
                                 {% csrf_token %}
                                 <label class="sr-only" for="inlineFormInputName2"></label>
-                                <input type="month" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="m">
-                                
+                                <input type="month" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name= "m" value="{{y}}-{{m}}">
                                 <button type="submit" class="btn btn-primary mb-2 ">View</button>
                             </form>
                             
