@@ -18,8 +18,8 @@ def view_login(request):
             user = authenticate(email=email, password=password)
             if user is not None and user.is_superuser:
                     login(request,user)
-                    currentMonth = datetime.now().month
-                    currentYear = datetime.now().year
+                    currentMonth = datetime.datetime.now().month
+                    currentYear = datetime.datetime.now().year
                     return render(request,"saldet.html",{'m':currentMonth,'y':currentYear})
             else:
                 messages.error(request,"Invalid email or password")
