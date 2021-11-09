@@ -93,33 +93,31 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="exampleInputUsername1">Email</label>
-                                        <input type="email" class="form-control" name="mail" placeholder='abc@orark.com'
-                                            list="suggestions">
+                                        <input type="email" class="form-control" name="mail" placeholder='abc@orark.com' list="suggestions" required>
                                         <datalist id="suggestions">
                                             {%for y in stu%}
-                                            <option value="{{y}}">
-                                                {%endfor%}
+                                                <option value="{{y}}">
+                                            {%endfor%}
                                         </datalist>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="exampleInputUsername1">Date</label>
-                                        <input type="date" class="form-control" name="tdate" value={{date}}>
+                                        <input type="date" class="form-control" name="tdate" value={{date}} required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputUsername1">Entry Time</label>
-                                        <input type="time" class="form-control" name="entme">
+                                        <input type="time" class="form-control" name="entme" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputUsername1">Exit Time</label>
-                                        <input type="time" class="form-control" name="extme">
+                                        <input type="time" class="form-control" name="extme" required>
                                     </div>
                                 </div>
-                                <input type="submit" value="Mark Attendance"
-                                    class="btn btn-inverse-success btn-lg btn-block">
+                                <input type="submit" value="Mark Attendance" class="btn btn-success btn-lg btn-block">
                             </form>
                         </div>
                     </div>

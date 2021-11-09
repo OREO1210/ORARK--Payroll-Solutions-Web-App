@@ -65,9 +65,10 @@ def paysl(request):
 def emppro(request):
     if request.user.is_authenticated and request.user.is_employee:
 
-        # code for profile 
+        x=Employees.objects.get(user=request.user)
         
-        return render(request,"empprofile.html")
+        
+        return render(request,"empprofile.html",{'empp':x})
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Employee",'typ':'emp'})

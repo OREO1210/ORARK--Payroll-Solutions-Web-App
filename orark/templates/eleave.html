@@ -4,6 +4,7 @@
 
 
 
+
 <div class="container-scroller">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -129,25 +130,16 @@
                         <div class="form-group col-md-12">
                             <label>Leave type</label>
                             
-                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="ltype">
-                                <option>Vacation</option>
-                                <option>Civil Leave/Jury Duty</option>
-                                <option>Military</option>
-                                <option>Sick - Self</option>
-                                <option>Sick - Family</option>
-                                <option>Sick - Dr. Appointment</option>
-                                <option>Worker's Comp</option>
-                                <option>Family and Medical</option>
-                                <option>Leave of Absence</option>
-                                <option>Funeral</option>
-                                <option>Other</option>
+                            <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="ltype" required>
+                                <option>Casual Leave</option>
+                                <option>Sick Leave</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label>Details</label>
-                            <textarea class="form-control" name="applications" id="exampleTextarea1" rows="4" placeholder="Required if leave type is Family and Medical, Funeral or Other"></textarea>
+                            <textarea class="form-control" name="applications" id="exampleTextarea1" rows="4"></textarea>
                         </div>
                     </div>
                     <p class="card-description">
@@ -156,20 +148,31 @@
                     <div class="row">
                       <div class="form-group col-md-6">
                         <label for="exampleInputUsername1">From</label>
-                        <input type="date" class="form-control" name="sdate">
+                        <input type="date" class="form-control" name="sdate" required>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="exampleInputUsername1">To</label>
-                        <input type="date" class="form-control" name="edate">
+                        <input type="date" class="form-control" name="edate" required>
                       </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputUsername1">Date of Application</label>
                         <input type="date" class="form-control" value="{{date}}" disabled>
                     </div>
-
-                    <input type="submit" value="Submit" class="btn btn-primary mr-2">
-                    <button class="btn btn-light">Reset</button>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <button type="submit" class="btn btn-primary btn-lg btn-icon-text btn-block">
+                        <i class="ti-file btn-icon-prepend"></i>
+                        Submit
+                        </button>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="reset" class="btn btn-inverse-info btn-lg btn-icon-text btn-block">
+                        <i class="ti-reload btn-icon-prepend"></i>
+                        Reset
+                        </button>
+                      </div>
+                    </div>
 
                   </form>
                 </div>
@@ -190,7 +193,7 @@
     <!-- page-body-wrapper ends -->
   </div>
 
-  <script src="{%static 'js/bulma-calendar.js'%}"></script>
+ <script src="{%static 'js/bulma-calendar.js'%}"></script>
   <script src="{%static 'js/bulma-calendar.min.js'%}"></script>
   <script src="{%static 'vendors/js/vendor.bundle.base.js'%}"></script>
   <script src="{%static 'vendors/typeahead.js/typeahead.bundle.min.js'%}"></script>
@@ -203,6 +206,5 @@
   <script src="{%static 'js/file-upload.js'%}"></script>
   <script src="{%static 'js/typeahead.js'%}"></script>
   <script src="{%static 'js/select2.js'%}"></script>
-
 
 {% endblock %}

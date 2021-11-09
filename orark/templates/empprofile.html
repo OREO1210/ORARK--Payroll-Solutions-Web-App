@@ -87,17 +87,39 @@
 
 
         <div class="main-panel">
-            <div class="content-wrapper">
+            <div class="content-wrapper">            
+            
 
+            <div class="row">
+                <div class="col-md-3 grid-margin stretch-card">
+                    <div class="card tale-bg">
+                        <div class="card-people mt-auto" style="padding-top:0px">
+                            <img src="{{request.user.images.url}}" alt="people">
+                        </div>
+                    </div>
+                </div>
 
-
-
-
-
-
-
-
+                <div class="col-md-9 grid-margin stretch-card">
+                    <div class="card">
+                    <div class="row">
+                        <div class="col-md-10 card-body">
+                            
+                                <p class="fs-30 mb-2" style="padding-top:20px;padding-left:20px">{{request.user.first_name}} {{request.user.last_name}} </p>
+                                <p class="mb-2 text-primary" style="padding-left:20px">{{empp.desg}}</p>
+                                <p class="mb-2 text-secondary" style="padding-top:20px;padding-left:20px"><i class="ti-location-pin"></i>  {{empp.addresses}}</p>
+                                <a href="tel:{{empp.contact}}"><p style="padding-top:20px;padding-left:20px" class="mb-2 text-secondary" style="padding-top:20px;padding-left:20px"><i class="ti-mobile"></i>  {{empp.contact}}</p></a>
+                                <a href="mailto:{{request.user.email}}"><p style="padding-top:20px;padding-left:20px" class="mb-2 text-secondary" style="padding-top:20px;padding-left:20px"><i class="ti-email"></i>  {{request.user.email}}</p></a>
+                            
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-inverse-info btn-block"data-bs-toggle="tooltip" data-placement="bottom" title="Employee ID : {{empp.emp_id}}">#{{empp.emp_id}}</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
+
+            
 
             <!-- content-wrapper ends -->
             <!-- partial:../../partials/_footer.html -->
@@ -122,6 +144,9 @@
 <script src="{%static 'js/file-upload.js'%}"></script>
 <script src="{%static 'js/typeahead.js'%}"></script>
 <script src="{%static 'js/select2.js'%}"></script>
+<script>
+  $('[data-bs-toggle="tooltip"]').tooltip();
+</script>
 
 
 {% endblock %}

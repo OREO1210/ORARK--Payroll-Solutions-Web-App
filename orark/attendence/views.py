@@ -5,8 +5,8 @@ from django.views.generic import CreateView
 from accounts.models import *
 from leavemangement.models import *
 from itertools import chain
-from datetime import datetime
 from attendence.models import *
+from datetime import datetime
 
 
 def view_login(request):
@@ -38,15 +38,16 @@ def attd_entry(request):
         FMT='%H:%M'
         t1=att.exit_time
         t2=att.entry_time
-        att.working_hrs= datetime.datetime.strptime(t1,FMT) - datetime.datetime.strptime(t2,FMT)
+        att.working_hrs= datetime.strptime(t1,FMT) - datetime.strptime(t2,FMT)
         att.emp= y
         att.deptid= y.dep
         att.save()
+        messages.error(request,"Attendance succesfully registered")
         return redirect( '/recep/attend/')
         
     elif request.user.is_authenticated and request.user.is_receptionist:
         x=Employees.objects.all()
-        return render(request,"att_sheet.html",{'stu':x})
+        return render(request,"att_sheet.html",{'stu':x,'date': datetime.today().strftime('%Y-%m-%d')})
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"Receptionist",'typ':'recep'})
