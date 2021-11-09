@@ -98,7 +98,7 @@
                             <form class="form-inline" method="post" action="/emp/payview/" target="_blank">
                                 {% csrf_token %}
                                 <label class="sr-only" for="inlineFormInputName2"></label>
-                                <input type="month" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name= "m" value="{{y}}-{{m}}">
+                                <input type="month" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name= "m" value="{{y}}-{{m}}" required>
                                 <button type="submit" class="btn btn-primary mb-2 ">View</button>
                             </form>
                             
