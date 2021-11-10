@@ -63,7 +63,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link" href="/logout">
                         <i class="ti-power-off menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
@@ -81,6 +81,51 @@
         <div class="main-panel">
             <div class="content-wrapper">
 
+
+            <div class="row">
+                <div class="col-md-3 grid-margin stretch-card">
+                    <div class="card tale-bg">
+                        <div class="card-people mt-auto" style="padding-top:0px">
+                            <img src="{{request.user.images.url}}" alt="people">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7 grid-margin stretch-card">
+                    <div class="card">
+                    <div class="row">
+                        <div class="col-md-8 card-body">
+                            
+                                <p class="fs-30 mb-2" style="padding-top:20px;padding-left:20px">{{request.user.first_name}} {{request.user.last_name}} </p>
+                                <p class="mb-2 text-primary" style="padding-left:20px">Head of Department : {{empp.deptname}}</p>
+                                <a href="mailto:{{request.user.email}}"><p style="padding-top:20px;padding-left:20px" class="mb-2 text-secondary" style="padding-top:20px;padding-left:20px"><i class="ti-email"></i>  {{request.user.email}}</p></a>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-inverse-info btn-block"data-bs-toggle="tooltip" data-placement="bottom" title="Department ID : {{empp.dep_id}}">#{{empp.dep_id}}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 card" style="margin-left: 22px;">
+                           <div class="card card-tale" style="padding-top: 15px;padding-bottom: 15px;">
+                                <p class="mb-4 align-self-center">Employees in {{empp.deptname}}</p>
+                                <p class="fs-30 align-self-center">{{cnt|length}}</p>
+                            </div>     
+                        </div>
+
+
+                        <div class="col-md-5 card align-right" style="margin-left: 5px;">
+                           <div class="card card-dark-blue" style="padding-top: 15px;padding-bottom: 15px;">
+                                <p class="mb-4 align-self-center">Pending leave requests</p>
+                                <p class="fs-30 align-self-center">{{pnd}}</p>
+                            </div> 
+                        </div>
+                        
+
+                    </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -114,6 +159,9 @@
 <script src="{%static 'js/file-upload.js'%}"></script>
 <script src="{%static 'js/typeahead.js'%}"></script>
 <script src="{%static 'js/select2.js'%}"></script>
+<script>
+  $('[data-bs-toggle="tooltip"]').tooltip();
+</script>
 
 
 {% endblock %}

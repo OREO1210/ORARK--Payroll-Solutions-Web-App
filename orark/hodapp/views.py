@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
 from accounts.models import *
+from leavemangement.models import *
 from itertools import chain
 from datetime import date
 
@@ -24,9 +25,15 @@ def view_login(request):
 def hodpro(request):
     if request.user.is_authenticated and request.user.is_hod:
 
-        #code for hod profile 
+        x=Dept.objects.get(user=request.user)
+        y=Employees.objects.filter(dep=x)
+        stud = LeaveRequests.objects.all().filter(dep=x)
+        z=0
+        for m in stud:
+            if m.statuses==0:
+                z += 1
         
-        return render(request,'hodprofile.html')
+        return render(request,'hodprofile.html',{'empp':x,'cnt':y,'pnd':z})
     else:
         messages.error(request,"Please Login to continue")
     return render(request,"login.html",{'type':"HOD",'typ':'hod'})
