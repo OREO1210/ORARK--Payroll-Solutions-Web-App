@@ -97,6 +97,7 @@ def empleave(request):
         lrq.statuses=0
         lrq.date_of_application=datetime.today()
         lrq.save()
+        messages.error(request,"Leave request submitted")
         return redirect("/leave/emp")
         
     elif request.user.is_authenticated and request.user.is_employee:

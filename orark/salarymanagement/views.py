@@ -134,7 +134,8 @@ def saladett(request):
             msl.total=totl
             msl.gearn= float(basic)+ float(otpp)+ float(da) + float(ma) +float(tral) +float (hra)+float (ceal)+float(bons)
             msl.gded= float(itxx)+ float(ptxx) +float(escc) + float(pfnd)
-            msl.save()    
+            msl.save()
+            messages.error(request,"Payroll Successfully Generated")
         return redirect('/ad/addhome')
     elif request.user.is_authenticated and request.user.is_superuser:
         currentMonth = datetime.datetime.now().month

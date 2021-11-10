@@ -67,7 +67,7 @@
           </li>
         
           <li class="nav-item">
-            <a class="nav-link" href="/logout">
+            <a class="nav-link" href="/">
               <i class="ti-power-off menu-icon"></i>
               <span class="menu-title">Logout</span>
             </a>
@@ -180,6 +180,20 @@
             </div>
         </div>
 
+{% if messages %}
+  <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+          {% for message in messages %}
+              <div class="modal-body">
+                  <h6 class="card-body btn-inverse-success" style="text-align: center">{{ message }}</h6>
+                  <button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal">Close</button>
+              </div>
+            {% endfor%}
+          </div>
+      </div>
+  </div>
+{%endif%}
 
 
             
