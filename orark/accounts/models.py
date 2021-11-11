@@ -92,7 +92,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(('email address'), unique=True)
     gender = models.IntegerField(choices=GENDER_CHOICES,default=2)
-    images = models.ImageField(db_column='Images', upload_to='pics',default='/pics/orark-small.jpg', blank=True)  # Field name made lowercase.
+    images = models.ImageField(db_column='Images', upload_to='pics',default='/pics/orark-small.jpg', blank=True)   
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
@@ -101,29 +101,29 @@ class User(AbstractUser):
 
 
 class MonthlySalary(models.Model):
-    slip_id = models.AutoField(db_column='Slip_id', primary_key=True)  # Field name made lowercase.
-    emp = models.ForeignKey('Employees', models.DO_NOTHING, db_column='Emp_id')  # Field name made lowercase.
-    year = models.IntegerField(db_column='Year', blank=True, null=True) # Field name made lowercase.
-    month = models.IntegerField(db_column='Month', blank=True, null=True) # Field name made lowercase.
-    workingdays = models.IntegerField(db_column='Working_Days', blank=True, null=True) # Field name made lowercase.
-    absentdays = models.IntegerField(db_column='Absent_Days', blank=True, null=True) # Field name made lowercase.
-    paydays = models.IntegerField(db_column='Pay_Days', blank=True, null=True) # Field name made lowercase.
-    basic = models.FloatField(db_column='BASIC')  # Field name made lowercase.
-    othr = models.IntegerField(db_column='OT_HR')  # Field name made lowercase.
-    otpay = models.FloatField(db_column='OTPAY')  # Field name made lowercase.
-    da = models.FloatField(db_column='DA')  # Field name made lowercase.
-    pf = models.FloatField(db_column='PF')  # Field name made lowercase.
-    esic = models.FloatField(db_column='ESIC')  # Field name made lowercase.
-    itax = models.FloatField(db_column='ITAX')  # Field name made lowercase.
-    ptax = models.FloatField(db_column='PTAX')  # Field name made lowercase.
-    bonus = models.FloatField(db_column='BONUS', blank=True, null=True)  # Field name made lowercase.
-    ma = models.FloatField(db_column='MA', blank=True, null=True)  # Field name made lowercase.
-    ta = models.FloatField(db_column='TA', blank=True, null=True)  # Field name made lowercase.
-    hra = models.FloatField(db_column='HRA', blank=True, null=True)  # Field name made lowercase.
-    cea = models.FloatField(db_column='CEA', blank=True, null=True)  # Field name made lowercase.
-    gded = models.FloatField(db_column='gded', blank=True, null=True)  # Field name made lowercase.
-    gearn = models.FloatField(db_column='gearn', blank=True, null=True)  # Field name made lowercase.
-    total = models.FloatField(db_column='Total', blank=True, null=True)  # Field name made lowercase.
+    slip_id = models.AutoField(db_column='Slip_id', primary_key=True)   
+    emp = models.ForeignKey('Employees', models.DO_NOTHING, db_column='Emp_id')   
+    year = models.IntegerField(db_column='Year', blank=True, null=True)  
+    month = models.IntegerField(db_column='Month', blank=True, null=True)  
+    workingdays = models.IntegerField(db_column='Working_Days', blank=True, null=True)  
+    absentdays = models.IntegerField(db_column='Absent_Days', blank=True, null=True)  
+    paydays = models.IntegerField(db_column='Pay_Days', blank=True, null=True)  
+    basic = models.FloatField(db_column='BASIC')   
+    othr = models.IntegerField(db_column='OT_HR')   
+    otpay = models.FloatField(db_column='OTPAY')   
+    da = models.FloatField(db_column='DA')   
+    pf = models.FloatField(db_column='PF')   
+    esic = models.FloatField(db_column='ESIC')   
+    itax = models.FloatField(db_column='ITAX')   
+    ptax = models.FloatField(db_column='PTAX')   
+    bonus = models.FloatField(db_column='BONUS', blank=True, null=True)   
+    ma = models.FloatField(db_column='MA', blank=True, null=True)   
+    ta = models.FloatField(db_column='TA', blank=True, null=True)   
+    hra = models.FloatField(db_column='HRA', blank=True, null=True)   
+    cea = models.FloatField(db_column='CEA', blank=True, null=True)   
+    gded = models.FloatField(db_column='gded', blank=True, null=True)   
+    gearn = models.FloatField(db_column='gearn', blank=True, null=True)   
+    total = models.FloatField(db_column='Total', blank=True, null=True)   
 
     class Meta:
         db_table = 'monthly_salary'
@@ -135,11 +135,11 @@ class MonthlySalary(models.Model):
 
 
 class SlabTable(models.Model):
-    llim = models.FloatField(db_column='Lower_Limit')  # Field name made lowercase.
-    ulim = models.FloatField(db_column='Upper_Limit')  # Field name made lowercase.
-    itax = models.FloatField(db_column='Income_Tax')  # Field name made lowercase.
-    ptax = models.FloatField(db_column='Professional_Tax')  # Field name made lowercase.
-    esic = models.FloatField(db_column='ESIC')  # Field name made lowercase.
+    llim = models.FloatField(db_column='Lower_Limit')   
+    ulim = models.FloatField(db_column='Upper_Limit')   
+    itax = models.FloatField(db_column='Income_Tax')   
+    ptax = models.FloatField(db_column='Professional_Tax')   
+    esic = models.FloatField(db_column='ESIC')   
     
     class Meta:
         db_table = 'slab_table'
@@ -152,8 +152,8 @@ class SlabTable(models.Model):
 
 class Dept(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
-    dep_id = models.BigIntegerField(db_column='Dep_id', null=False)  # Field name made lowercase.
-    deptname = models.CharField(db_column='DeptName', max_length=100)  # Field name made lowercase.
+    dep_id = models.BigIntegerField(db_column='Dep_id', null=False)   
+    deptname = models.CharField(db_column='DeptName', max_length=100)   
    
     class Meta:
          
@@ -165,10 +165,10 @@ class Dept(models.Model):
 
 
 class Designation(models.Model):
-    desg_id = models.BigAutoField(db_column='Desg_id', primary_key=True)  # Field name made lowercase.
-    dep = models.ForeignKey(Dept, models.DO_NOTHING, db_column='Dep_id')  # Field name made lowercase.
-    desgname = models.CharField(db_column='DesgName', max_length=100)  # Field name made lowercase.
-    amount = models.FloatField(db_column='Amount')  # Field name made lowercase.
+    desg_id = models.BigAutoField(db_column='Desg_id', primary_key=True)   
+    dep = models.ForeignKey(Dept, models.DO_NOTHING, db_column='Dep_id')   
+    desgname = models.CharField(db_column='DesgName', max_length=100)   
+    amount = models.FloatField(db_column='Amount')   
 
     class Meta:
         db_table = 'designation'
@@ -180,18 +180,18 @@ class Designation(models.Model):
 
 class Employees(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
-    emp_id = models.BigIntegerField(db_column='Emp_id', null=False)  # Field name made lowercase.
-    dep = models.ForeignKey(Dept, models.DO_NOTHING, db_column='Dep_id')  # Field name made lowercase.
-    desg = models.ForeignKey(Designation, models.DO_NOTHING, db_column='Desg_id')  # Field name made lowercase.
-    dob = models.DateField(db_column='DOB')  # Field name made lowercase.
-    contact = models.CharField(max_length=18,db_column='Contact')  # Field name made lowercase.
-    addresses = models.CharField(db_column='Addresses', max_length=700)  # Field name made lowercase.
-    hire_date = models.DateField(db_column='Hire_date')  # Field name made lowercase.
-    no_of_children = models.IntegerField(db_column='No_of_Children')  # Field name made lowercase.
-    pannum = models.CharField(max_length=10,db_column='PAN')  # Field name made lowercase.
-    pfnum = models.CharField(max_length=22,db_column='PF_Account_Num')  # Field name made lowercase.
-    bank = models.CharField(choices=BANK_CHOICES,max_length=100,db_column='Bank_Name')  # Field name made lowercase.
-    bankaccnum = models.CharField(max_length=18,db_column='Bank_Account_Num')  # Field name made lowercase.
+    emp_id = models.BigIntegerField(db_column='Emp_id', null=False)   
+    dep = models.ForeignKey(Dept, models.DO_NOTHING, db_column='Dep_id')   
+    desg = models.ForeignKey(Designation, models.DO_NOTHING, db_column='Desg_id')   
+    dob = models.DateField(db_column='DOB')   
+    contact = models.CharField(max_length=18,db_column='Contact')   
+    addresses = models.CharField(db_column='Addresses', max_length=700)   
+    hire_date = models.DateField(db_column='Hire_date')   
+    no_of_children = models.IntegerField(db_column='No_of_Children')   
+    pannum = models.CharField(max_length=10,db_column='PAN')   
+    pfnum = models.CharField(max_length=22,db_column='PF_Account_Num')   
+    bank = models.CharField(choices=BANK_CHOICES,max_length=100,db_column='Bank_Name')   
+    bankaccnum = models.CharField(max_length=18,db_column='Bank_Account_Num')   
     
 
     class Meta:
