@@ -30,7 +30,7 @@ def hodleaveinfo(request):
                    x.leave_sdate,
                    x.leave_edate,
                    x.leave_type,
-                   delta.days]
+                   int(delta.days)+1]
                 pending.append(l)
             elif x.statuses==1:
                 l=[]
@@ -45,7 +45,7 @@ def hodleaveinfo(request):
                    x.leave_sdate,
                    x.leave_edate,
                    x.leave_type,
-                   delta.days]
+                   int(delta.days)+1]
                 approved.append(l)
             else:
                 l=[]
@@ -60,7 +60,7 @@ def hodleaveinfo(request):
                    x.leave_sdate,
                    x.leave_edate,
                    x.leave_type,
-                   delta.days]
+                   int(delta.days)+1]
                 rejected.append(l)
         return render(request,'hleave.html',{'pen': pending,'app':approved,'rej':rejected})
     else:
@@ -120,7 +120,7 @@ def empviewleave(request):
                x.leave_sdate,
                x.leave_edate,
                x.leave_type,
-               delta.days,
+               int(delta.days)+1,
                x.statuses]
             final.append(l)
         return render(request,"eleaveview.html",{'stu':final})

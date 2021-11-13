@@ -92,7 +92,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(('email address'), unique=True)
     gender = models.IntegerField(choices=GENDER_CHOICES,default=2)
-    images = models.ImageField(db_column='Images', upload_to='pics',default='/pics/orark-small.jpg', blank=True)   
+    images = models.ImageField(db_column='Images', upload_to='pics',default='/pics/orark-small.png', blank=True)   
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
