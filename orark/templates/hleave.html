@@ -288,83 +288,84 @@
                       </a>
                     </h5>
                   </div>
-                <div id="col{{st.0}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-2">
-                        <address class="text-primary" style="margin-bottom:0px">
+                  <div id="col{{st.0}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <address class="text-primary" style="margin-bottom:0px">
                           
-                          <p class="font-weight-bold">
-                            Leave type
-                          </p>
-                          <p>
-                           {{st.9}}
-                          </p><br>
-                          <p class="font-weight-bold">
-                            Leave duration
-                          </p>
-                          <p class="row">
-                            <span class="col-md-4" style="padding-right:0px">From:</span><span class="col-md-7" style="padding-left:0px">{{st.7}}</span>
-                          </p>
-                          <p class="row">
-                            <span class="col-md-4" style="padding-right:0px">To:</span><span class="col-md-7" style="padding-left:0px">{{st.8}}</span>
-                          </p><br>
-                          <p class="font-weight-bold">
-                            Total days: {{st.10}}
-                          </p>
-                        </address>
-                      </div>
-
-                      <div class="col-md-3">
-                        <address style="margin-bottom:0px">
-                          <p class="font-weight-bold">
-                            E-mail
-                          </p>
-                          <p class="mb-2">
-                            {{st.3}}
-                          </p><br>
-                          <p class="font-weight-bold">
-                            Employee Name
-                          </p>
-                          <p class="mb-2">
-                            {{st.1}} {{st.2}}
-                          </p><br>
-                          <p class="font-weight-bold">
-                            Date of Application
-                          </p>
-                          <p>
-                            {{st.6}}
-                          </p>
-                        </address>
-                      </div>
-                      <div class="col-md-3">
-                        <address>
-                          <p class="font-weight-bold">Details</p>
-                          <p>
-                            {{st.5}}
-                          </p>
-                        </address>
-                      </div>
-                      <div class="card col-md-2" style="background-color:#f5f7ff">
-                        <form class="form-sample" method="post" action="/leave/hod/{{st.0}}">
-                        {% csrf_token %}
-                        <div style="margin-bottom:17.2px">
-                          <div class="form-check form-check-success">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appn">
-                              Approve
-                            </label>
-                          </div>
-                          <div class="form-check form-check-danger">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="rjct" checked="" >
-                              Reject
-                            </label>
-                          </div>
-                          <input type="submit" value="Submit" class="btn btn-primary btn-md btn-block">
+                            <p class="font-weight-bold">
+                              Leave type
+                            </p>
+                            <p>
+                            {{st.9}}
+                            </p><br>
+                            <p class="font-weight-bold">
+                              Leave duration
+                            </p>
+                            <p class="row">
+                              <span class="col-md-4" style="padding-right:0px">From:</span><span class="col-md-7" style="padding-left:0px">{{st.7}}</span>
+                            </p>
+                            <p class="row">
+                              <span class="col-md-4" style="padding-right:0px">To:</span><span class="col-md-7" style="padding-left:0px">{{st.8}}</span>
+                            </p><br>
+                            <p class="font-weight-bold">
+                              Total days: {{st.10}}
+                            </p>
+                          </address>
                         </div>
-                        </form>
-                      </div>  
+
+                        <div class="col-md-3">
+                          <address style="margin-bottom:0px">
+                            <p class="font-weight-bold">
+                              E-mail
+                            </p>
+                            <p class="mb-2">
+                              {{st.3}}
+                            </p><br>
+                            <p class="font-weight-bold">
+                              Employee Name
+                            </p>
+                            <p class="mb-2">
+                              {{st.1}} {{st.2}}
+                            </p><br>
+                            <p class="font-weight-bold">
+                              Date of Application
+                            </p>
+                            <p>
+                              {{st.6}}
+                            </p>
+                          </address>
+                        </div>
+                        <div class="col-md-3">
+                          <address>
+                            <p class="font-weight-bold">Details</p>
+                            <p>
+                              {{st.5}}
+                            </p>
+                          </address>
+                        </div>
+                        <div class="card col-md-2" style="background-color:#f5f7ff">
+                          <form class="form-sample" method="post" action="/leave/hod/{{st.0}}">
+                          {% csrf_token %}
+                          <div style="margin-bottom:17.2px">
+                            <div class="form-check form-check-success">
+                              <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="appn">
+                                Approve
+                              </label>
+                            </div>
+                            <div class="form-check form-check-danger">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="rjct" checked="" >
+                                Reject
+                              </label>
+                            </div>
+                            <input type="submit" value="Submit" class="btn btn-primary btn-md btn-block">
+                          </div>
+                          </form>
+                        </div>
+                      </div> 
                     </div>
                   </div>
                 </div> 
@@ -399,7 +400,7 @@
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
+</div>
 
   <script src="{%static 'js/bulma-calendar.js'%}"></script>
   <script src="{%static 'js/bulma-calendar.min.js'%}"></script>

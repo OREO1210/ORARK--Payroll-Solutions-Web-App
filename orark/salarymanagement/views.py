@@ -80,8 +80,7 @@ def saladett(request):
                 z=str(w)[2:-3]
                 t1=datetime.datetime.strptime(maxhours,"%H:%M")
                 t2=datetime.datetime.strptime(z,"%H:%M:%S")
-                
-                ot=t1-t2
+                ot=t2-t1
                 ox=str(ot)
                 if ox[0] != '-':
                     othours += int(ox[0])
@@ -109,8 +108,6 @@ def saladett(request):
                 
             otpp=((usr.desg.amount)/(int(maxhours[:2]))) * othours
             
-            totl=bbda+tral+ceal+hral+mall+bons+otpp-pfnd-escc-itxx-ptxx
-            
             msl = MonthlySalary()
             msl.emp=usr
             msl.year=int(months[:4])
@@ -131,11 +128,13 @@ def saladett(request):
             msl.ta=tral
             msl.hra=hral
             msl.cea=ceal
-            msl.total=totl
-            msl.gearn= float(basic)+ float(otpp)+ float(da) + float(ma) +float(tral) +float (hra)+float (ceal)+float(bons)
-            msl.gded= float(itxx)+ float(ptxx) +float(escc) + float(pfnd)
+            k1= float(basic) + float(otpp) + float(da) + float(mall) + float(tral) + float(hral) + float(ceal) + float(bons)
+            k2= float(itxx) + float(ptxx) + float(escc) + float(pfnd)
+            msl.gearn= k1
+            msl.gded= k2
+            msl.total= k1-k2
             msl.save()
-            messages.error(request,"Payroll Successfully Generated")
+        messages.error(request,"Payroll Successfully Generated")
         return redirect('/ad/addhome')
     elif request.user.is_authenticated and request.user.is_superuser:
         currentMonth = datetime.datetime.now().month
