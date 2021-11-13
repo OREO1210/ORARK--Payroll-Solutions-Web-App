@@ -13,7 +13,7 @@ A simplified payroll and employee management system based on Django.
 #### Make sure to install django-
 - `pip install django`
 #### Windows-
-- `cd SAIC`
+- `cd orark`
 - `py -m venv env`
 - `env/Scripts/activate`
 - `pip install -r requirements.txt`
@@ -23,7 +23,7 @@ A simplified payroll and employee management system based on Django.
 - `python manage.py runserver`
 
 #### Ubuntu-
-- `cd SAIC`
+- `cd orark`
 - `sudo apt-get install python3-pip`
 - `sudo pip3 install virtualenv`
 - `virtualenv env`
